@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".citizen.Activity.GuestListActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Rv_GuestListACtivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/Iv_GuestListActivity_NewGuest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"
+        android:background="@drawable/background_round_corner_rectangle"
+        android:backgroundTint="@color/background_3"
+        android:padding="18dp"
+        android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+</RelativeLayout>

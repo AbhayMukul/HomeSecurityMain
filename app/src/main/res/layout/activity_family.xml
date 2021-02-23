@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".citizen.Activity.FamilyActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Rv_FamilyActivity"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:text="Add a new family member"
+        android:id="@+id/_FamilyActivity_NewFamily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"
+        android:drawableRight="@drawable/ic_baseline_chevron_right_white_24"
+        android:background="@drawable/background_round_corner_rectangle"
+        android:backgroundTint="@color/background_3"
+        android:padding="18dp"/>
+</RelativeLayout>

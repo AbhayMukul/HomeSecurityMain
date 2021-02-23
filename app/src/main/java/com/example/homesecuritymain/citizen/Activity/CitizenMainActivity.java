@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterRecyclerViewCitizenMainActivity;
@@ -22,6 +24,9 @@ public class CitizenMainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    //XML elements
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,13 @@ public class CitizenMainActivity extends AppCompatActivity {
         //set RecyclerView
         setData();
         setAdapter();
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CitizenMainActivity.this,SettingActivityCitizen.class));
+            }
+        });
     }
 
     private void setData() {
@@ -54,5 +66,6 @@ public class CitizenMainActivity extends AppCompatActivity {
 
     private void initialize() {
         recyclerView = findViewById(R.id.Rv_CitizenMainActivity);
+        imageView = findViewById(R.id.Iv_CitizenMainActivity_Setting);
     }
 }

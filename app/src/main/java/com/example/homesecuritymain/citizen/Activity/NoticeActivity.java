@@ -11,10 +11,17 @@ import android.os.Bundle;
 import com.example.homesecuritymain.R;
 
 public class NoticeActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
+
+        initialize();
+    }
+
+    private void initialize() {
+        recyclerView = findViewById(R.id.Rv_NoticeActivity);
     }
 }
