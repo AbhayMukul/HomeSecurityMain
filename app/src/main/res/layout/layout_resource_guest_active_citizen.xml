@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingBottom="8dp"
+    android:background="@drawable/background_round_corner_rectangle"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <LinearLayout
+            android:layout_weight="0.8"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:textSize="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:id="@+id/Tv_Lr_GuestActiveCitizen_GuestName"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Work"
+                android:id="@+id/Tv_Lr_GuestActiveCitizen_GuestWork"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Tv_Lr_GuestActiveCitizen_Stop"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:layout_margin="16dp"
+            android:drawableTop="@drawable/ic_stop"
+            android:text="STOP"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="0.2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_circle"/>
+    </LinearLayout>
+
+    <Button
+        android:background="@drawable/background_round_corner_rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Allow Exit"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/Btn_Lr_GuestActiveCitizen_AllowExit"
+        android:backgroundTint="@color/background_7"/>
+
+    <TextView
+        android:layout_margin="8dp"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Call Guest?"
+        android:id="@+id/Tv_Lr_GuestActiveCitizen_CallGuest"/>
+</LinearLayout>

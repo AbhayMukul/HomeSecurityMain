@@ -13,25 +13,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
+import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGuestActiveCitizen;
-import com.example.homesecuritymain.guard.Adapters.AdapterActiveGuard;
+import com.example.homesecuritymain.citizen.Adapters.AdapterGuestAllCitizen;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FragmentGuestActive extends Fragment {
+public class FragmentGuestAll extends Fragment {
     public RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
 
     //Firebase Database
-    FirebaseRecyclerOptions<ModelActiveGuest> option;
-    FirebaseRecyclerAdapter<ModelActiveGuest, AdapterGuestActiveCitizen> firebaseRecyclerAdapter;
+    DatabaseReference mUserDatabaseGuest;
 
-    public static FragmentGuestActive getInstance(){
-        FragmentGuestActive fragmentGuestActive = new FragmentGuestActive();
-        return fragmentGuestActive;
+    FirebaseRecyclerOptions<ModelAllGuest> option;
+    FirebaseRecyclerAdapter<ModelAllGuest, AdapterGuestAllCitizen> firebaseRecyclerAdapter;
+
+    public static FragmentGuestAll getInstance() {
+        FragmentGuestAll fragmentGuestAll = new FragmentGuestAll();
+        return fragmentGuestAll;
     }
 
     @Override
@@ -53,44 +56,31 @@ public class FragmentGuestActive extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        option = new FirebaseRecyclerOptions.Builder<ModelActiveGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child("demo").child("GUEST").child("Active"), ModelActiveGuest.class).build();
+        option = new FirebaseRecyclerOptions.Builder<ModelAllGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child("demo").child("GUEST").child("All"), ModelAllGuest.class).build();
         load();
 
         return view;
     }
 
     private void load() {
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ModelActiveGuest, AdapterGuestActiveCitizen>(option) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ModelAllGuest, AdapterGuestAllCitizen>(option) {
+            @Override
+            protected void onBindViewHolder(@NonNull AdapterGuestAllCitizen adapter, int i, @NonNull ModelAllGuest model) {
+                adapter.tvName.setText(model.getName());
+                adapter.tvDateIn.setText("In :-" + model.getDateIn());
+                adapter.tvDateOut.setText("Out:- "+ model.getDateOutCitizen());
+            }
+
             @NonNull
             @Override
-            protected void onBindViewHolder(@NonNull AdapterGuestActiveCitizen adapter, int i, @NonNull ModelActiveGuest model) {
-                adapter.tvName.setText(model.getName());
-                adapter.tvWork.setText(model.getWork());
-
-                adapter.tvCall.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //call Guest
-                    }
-                });
-
-                adapter.tvStop.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //set Boolean STOP to true
-                    }
-                });
+            public AdapterGuestAllCitizen onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_resource_guest_all_citizen, parent, false);
+                return new AdapterGuestAllCitizen(v);
             }
-
-            @Override
-            public AdapterGuestActiveCitizen onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_resource_guest_active_citizen, parent, false);
-                return new AdapterGuestActiveCitizen(v);
-            }
-
         };
 
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
     }
+
 }

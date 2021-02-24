@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".guard.Activity.GuardMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/Vp_GuardMainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/Tb_GuardMainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="80dp">
+
+        <ImageView
+            android:id="@+id/Iv_GuardMainActivity_OpenLinerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round_corner_rectangle"
+            android:backgroundTint="@color/background_3"
+            android:padding="18dp"
+            android:src="@drawable/ic_baseline_emoji_objects_24" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Ll_GuardMainActivity_SettingsPannel"
+            >
+            <ImageView
+                android:layout_marginLeft="8dp"
+                android:id="@+id/Iv_GuardMainActivity_Setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_round_corner_rectangle"
+                android:backgroundTint="@color/purple_200"
+                android:padding="18dp"
+                android:src="@drawable/ic_baseline_settings_24" />
+
+            <ImageView
+                android:layout_marginLeft="8dp"
+                android:id="@+id/Iv_GuardMainActivity_NewGuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_round_corner_rectangle"
+                android:backgroundTint="@color/background_4"
+                android:padding="18dp"
+                android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
