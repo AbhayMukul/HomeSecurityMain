@@ -9,17 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".guard.Activity.CallActivity"></activity>
+        <activity android:name=".guard.Activity.CallActivity" />
         <activity android:name=".guard.Activity.GuestListVerificationActivity" />
         <activity android:name=".guard.Activity.OTPActivity" />
-        <activity android:name=".guard.Activity.AddNewGuestActivity"></activity>
-        <activity android:name=".Login.LoginActivityMain"></activity>
+        <activity android:name=".guard.Activity.AddNewGuestActivity" />
+        <activity android:name=".Login.LoginActivityMain" />
         <activity android:name=".guard.Activity.GuardMainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".citizen.Activity.SettingActivityCitizen" />
         <activity android:name=".citizen.Activity.GrievanceAddressalActivity" />
@@ -27,7 +22,13 @@
         <activity android:name=".citizen.Activity.NoticeActivity" />
         <activity android:name=".citizen.Activity.GuestListActivity" />
         <activity android:name=".citizen.Activity.GuestsActivity" />
-        <activity android:name=".citizen.Activity.CitizenMainActivity" />
+        <activity android:name=".citizen.Activity.CitizenMainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
