@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FragmentActiveGuest extends Fragment {
-
     public RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
 
@@ -33,6 +33,8 @@ public class FragmentActiveGuest extends Fragment {
 
     FirebaseRecyclerOptions<ModelActiveGuest> option;
     FirebaseRecyclerAdapter<ModelActiveGuest, AdapterActiveGuard> firebaseRecyclerAdapter;
+
+    Integer numberPosts = 0;
 
     public static FragmentActiveGuest getInstance(){
         FragmentActiveGuest fragmentActiveGuest = new FragmentActiveGuest();
@@ -68,11 +70,14 @@ public class FragmentActiveGuest extends Fragment {
     }
 
     private void load() {
+        numberPosts = 0;
         firebaseRecyclerAdapter =new FirebaseRecyclerAdapter<ModelActiveGuest, AdapterActiveGuard>(option) {
             @Override
             protected void onBindViewHolder(@NonNull AdapterActiveGuard adapter, int i, @NonNull ModelActiveGuest model) {
-                adapter.tvName.setText(model.getName());
+                adapter.tvName.setText(model.getName() + " , i = " + i);
                 adapter.tvTimeIn.setText(model.getTimeIn());
+
+                numberPosts++;
             }
 
             @NonNull
@@ -85,5 +90,7 @@ public class FragmentActiveGuest extends Fragment {
 
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
+
+        Toast.makeText(getContext(), "" + numberPosts, Toast.LENGTH_SHORT).show();
     }
 }

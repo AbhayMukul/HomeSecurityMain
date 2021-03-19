@@ -26,6 +26,7 @@ public class FragmentGuestActive extends Fragment {
     LinearLayoutManager linearLayoutManager;
 
     //Firebase Database
+    DatabaseReference mUserDatabaseGuest;
     FirebaseRecyclerOptions<ModelActiveGuest> option;
     FirebaseRecyclerAdapter<ModelActiveGuest, AdapterGuestActiveCitizen> firebaseRecyclerAdapter;
 
@@ -44,6 +45,8 @@ public class FragmentGuestActive extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
+
+        mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("guest").child("Active");
 
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -78,6 +81,10 @@ public class FragmentGuestActive extends Fragment {
                     @Override
                     public void onClick(View v) {
                         //set Boolean STOP to true
+                        if(model.getSTOP()) {
+                            mUserDatabaseGuest.child(model.getKeyUID()).child("STOP").setValue(true);
+                        }else
+                            mUserDatabaseGuest.child(model.getKeyUID()).child("STOP").setValue(false);
                     }
                 });
             }

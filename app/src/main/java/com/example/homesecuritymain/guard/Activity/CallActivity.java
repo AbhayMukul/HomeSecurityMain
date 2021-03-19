@@ -39,7 +39,6 @@ public class CallActivity extends AppCompatActivity implements Serializable {
     private String d,time;
 
     ModelActiveGuest modelActiveGuest;
-//    LinearLayout linearLayout;
 
     private static final int REQUEST_CALL = 1;
 
@@ -63,8 +62,6 @@ public class CallActivity extends AppCompatActivity implements Serializable {
         //get modelActive
         modelActiveGuest = (ModelActiveGuest) getIntent().getSerializableExtra("data");
         Toast.makeText(this,"" + modelActiveGuest.getName(), Toast.LENGTH_SHORT).show();
-
-//        linearLayout.setEnabled(false);
 
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override

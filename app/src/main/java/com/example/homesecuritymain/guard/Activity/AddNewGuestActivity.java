@@ -68,7 +68,7 @@ public class AddNewGuestActivity extends AppCompatActivity implements Serializab
         work = edWork.getText().toString().trim();
         flat = edFlat.getText().toString().trim();
 
-        modelActiveGuest = new ModelActiveGuest(name,flat,phone,work,mUserDatabaseCitizen.push().getKey(),new DateAndTimeClass().getCurrentTime());
+        modelActiveGuest = new ModelActiveGuest(name,flat,phone,work,mUserDatabaseCitizen.push().getKey(),new DateAndTimeClass().getCurrentTime(),false);
 
     }
 

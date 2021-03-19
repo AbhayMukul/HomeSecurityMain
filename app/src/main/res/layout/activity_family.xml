@@ -17,7 +17,7 @@
         android:textColor="@color/white"
         android:textSize="16dp"
         android:text="Add a new family member"
-        android:id="@+id/_FamilyActivity_NewFamily"
+        android:id="@+id/Tv_FamilyActivity_AddNewFamily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

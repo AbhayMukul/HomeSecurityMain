@@ -9,14 +9,24 @@ public class ModelActiveGuest implements Serializable {
     String Work;
     String KeyUID;
     String TimeIn;
+    Boolean STOP;
 
-    public ModelActiveGuest(String name, String flat, String number, String work, String keyUID, String timeIn) {
+    public Boolean getSTOP() {
+        return STOP;
+    }
+
+    public void setSTOP(Boolean STOP) {
+        this.STOP = STOP;
+    }
+
+    public ModelActiveGuest(String name, String flat, String number, String work, String keyUID, String timeIn, Boolean STOP) {
         Name = name;
         Flat = flat;
         Number = number;
         Work = work;
         KeyUID = keyUID;
         TimeIn = timeIn;
+        this.STOP = STOP;
     }
 
     public String getTimeIn() {
