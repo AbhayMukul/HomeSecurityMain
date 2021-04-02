@@ -6,10 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".citizen.Activity.GuestListActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Rv_GuestListACtivity"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:textColor="@color/background_5"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GuestList"
+            android:textSize="32dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Rv_GuestListACtivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/Iv_GuestListActivity_NewGuest"

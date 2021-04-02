@@ -34,8 +34,6 @@ public class FragmentActiveGuest extends Fragment {
     FirebaseRecyclerOptions<ModelActiveGuest> option;
     FirebaseRecyclerAdapter<ModelActiveGuest, AdapterActiveGuard> firebaseRecyclerAdapter;
 
-    Integer numberPosts = 0;
-
     public static FragmentActiveGuest getInstance(){
         FragmentActiveGuest fragmentActiveGuest = new FragmentActiveGuest();
         return fragmentActiveGuest;
@@ -70,14 +68,11 @@ public class FragmentActiveGuest extends Fragment {
     }
 
     private void load() {
-        numberPosts = 0;
         firebaseRecyclerAdapter =new FirebaseRecyclerAdapter<ModelActiveGuest, AdapterActiveGuard>(option) {
             @Override
             protected void onBindViewHolder(@NonNull AdapterActiveGuard adapter, int i, @NonNull ModelActiveGuest model) {
-                adapter.tvName.setText(model.getName() + " , i = " + i);
+                adapter.tvName.setText(model.getName());
                 adapter.tvTimeIn.setText(model.getTimeIn());
-
-                numberPosts++;
             }
 
             @NonNull
@@ -87,10 +82,7 @@ public class FragmentActiveGuest extends Fragment {
                 return new AdapterActiveGuard(v);
             }
         };
-
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
-
-        Toast.makeText(getContext(), "" + numberPosts, Toast.LENGTH_SHORT).show();
     }
 }

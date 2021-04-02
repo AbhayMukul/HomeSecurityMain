@@ -45,6 +45,7 @@ public class AddNewGuestActivity extends AppCompatActivity implements Serializab
             @Override
             public void onClick(View v) {
                 getAndPutData();
+
                 Intent intent = new Intent(getBaseContext(), CallActivity.class);
 
                 //create model

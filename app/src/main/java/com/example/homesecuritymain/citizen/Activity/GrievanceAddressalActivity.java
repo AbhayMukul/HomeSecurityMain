@@ -9,6 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Fragment.FragmentCurrentGrievance;
@@ -24,6 +26,9 @@ public class GrievanceAddressalActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    //ImageView
+    private ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,13 @@ public class GrievanceAddressalActivity extends AppCompatActivity {
         initialize();
 
         setTabLayout();
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GrievanceAddressalActivity.this,NewGrievanceActivity.class));
+            }
+        });
     }
 
     private void setTabLayout() {
@@ -40,8 +52,8 @@ public class GrievanceAddressalActivity extends AppCompatActivity {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
-                viewPageAdapter.addFragment(FragmentCurrentGrievance.getInstance(), "Current Grievance");
-                viewPageAdapter.addFragment(FragmentGrievanceAll.getInstance(), "All Grievance");
+                viewPageAdapter.addFragment(FragmentCurrentGrievance.getInstance(), "Active Grievance");
+                viewPageAdapter.addFragment(FragmentGrievanceAll.getInstance(), "Previous Grievance");
 
                 viewPager.setAdapter(viewPageAdapter);
 
@@ -53,5 +65,7 @@ public class GrievanceAddressalActivity extends AppCompatActivity {
     private void initialize() {
         tabLayout = findViewById(R.id.Tl_GrievanceAddressalActivity);
         viewPager = findViewById(R.id.Vp_GrievanceAddressalActivity);
+
+        imageView = findViewById(R.id.Iv_GrievanceAddressalActivity_NewGrievance);
     }
 }

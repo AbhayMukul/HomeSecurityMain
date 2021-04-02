@@ -31,6 +31,6 @@
         android:background="@drawable/background_round_corner_rectangle"
         android:backgroundTint="@color/background_3"
         android:padding="18dp"
-        android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+        android:src="@drawable/ic_add" />
 
 </RelativeLayout>

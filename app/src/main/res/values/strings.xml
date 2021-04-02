@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HomeSecurityMain</string>
+
+    <string-array name="categoryGrievance">
+        <item>Plumbing</item>
+        <item>Carpentary</item>
+        <item>Electricity</item>
+        <item>Gardening</item>
+    </string-array>
 </resources>
