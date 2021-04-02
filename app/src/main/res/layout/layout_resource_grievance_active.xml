@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Category of Problem" />
+
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:id="@+id/Tv_Lr_GrievanceActive_Category"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="8dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.32"
+                    android:gravity="center"
+                    android:text="Scheduled time:" />
+
+                <TextView
+                    android:id="@+id/Tv_Lr_GrievanceActive_Time"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.68"
+                    android:padding="4dp"
+                    android:text="SELECT TIME"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.32"
+                    android:gravity="center"
+                    android:text="Schedule Date:" />
+
+                <TextView
+                    android:id="@+id/Tv_Lr_GrievanceActive_Date"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.68"
+                    android:padding="4dp"
+                    android:text="SELECT DATE"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Tv_Lr_GrievanceAll_MoreDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:gravity="right"
+                android:paddingRight="8dp"
+                android:text="More Details"
+                android:textColor="@color/background_5"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:id="@+id/Ll_Lr_GrievanceActive"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Grievance Description" />
+
+                <TextView
+                    android:id="@+id/Tv_Lr_GrievanceActive_Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="8dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:id="@+id/Tv_Lr_GrievanceActive_AssignedHelpName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:text="Assigned Help Name : "/>
+
+                <Button
+                    android:layout_marginRight ="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/Btn_Lr_GrievanceActive_AssignedHelpCall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_round_corner_rectangle"
+                    android:backgroundTint="@color/background_5"
+                    android:drawableStart="@drawable/ic_baseline_call_24"
+                    android:gravity="center"
+                    android:paddingLeft="16dp"
+                    android:text="Call Help" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/Tv_Lr_GuestListActivity_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Name"
+                android:textColor="@color/background_5"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/Tv_Lr_GuestListActivity_Code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CODE"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/Btn_Lr_GuestListActivity_Call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/background_4"
+                android:text="Number" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
