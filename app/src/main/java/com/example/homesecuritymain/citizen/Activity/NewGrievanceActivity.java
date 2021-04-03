@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Model.ModelGrievance;
 import com.example.homesecuritymain.citizen.Model.ModelGrievanceAll;
@@ -80,9 +81,12 @@ public class NewGrievanceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String key = mUserDatabaseGrievance.push().getKey();
+                Grievance = edGrievance.getText().toString().trim();
 
-                ModelGrievance modelGrievance = new ModelGrievance(Category,Grievance,Time,Date,"demo","name","8793215306",false,false,key,"","");
-                ModelGrievanceAll modelGrievanceAll = new ModelGrievanceAll(Category,Grievance,Time,Date,"demo","name","8793215306",false,key,"not fixed yet","not fixed yet","","");
+//                Toast.makeText(NewGrievanceActivity.this, Grievance, Toast.LENGTH_SHORT).show();
+
+                ModelGrievance modelGrievance = new ModelGrievance(Category,Grievance,Time,Date,"demo","name","8793215306",false,false,key,"","",new DateAndTimeClass().getCurrentTime(),new DateAndTimeClass().getCurrentDate());
+                ModelGrievanceAll modelGrievanceAll = new ModelGrievanceAll(Category,Grievance,Time,Date,"demo","name","8793215306",false,key,"not fixed yet","not fixed yet","","",new DateAndTimeClass().getCurrentTime(),new DateAndTimeClass().getCurrentDate());
 
                 mUserDatabaseCitizen.child("demo").child("Grievance").child("Active").child(key).setValue(modelGrievance);
                 mUserDatabaseCitizen.child("demo").child("Grievance").child("All").child(key).setValue(modelGrievanceAll);

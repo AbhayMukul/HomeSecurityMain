@@ -14,10 +14,29 @@ public class ModelGrievance {
     String AssignedHelpName;
     String AssignedHelpNumber;
 
+    String RecordedTime;
+    String RecordedDate;
+
     public ModelGrievance() {
     }
 
-    public ModelGrievance(String category, String grievance, String preferredTime, String preferredDate, String flat, String citizenName, String citizenPhone, Boolean DONECitizen, Boolean DONEHelp, String firebaseUID, String assignedHelpName, String assignedHelpNumber) {
+    public String getRecordedTime() {
+        return RecordedTime;
+    }
+
+    public void setRecordedTime(String recordedTime) {
+        RecordedTime = recordedTime;
+    }
+
+    public String getRecordedDate() {
+        return RecordedDate;
+    }
+
+    public void setRecordedDate(String recordedDate) {
+        RecordedDate = recordedDate;
+    }
+
+    public ModelGrievance(String category, String grievance, String preferredTime, String preferredDate, String flat, String citizenName, String citizenPhone, Boolean DONECitizen, Boolean DONEHelp, String firebaseUID, String assignedHelpName, String assignedHelpNumber, String recordedTime, String recordedDate) {
         Category = category;
         Grievance = grievance;
         PreferredTime = preferredTime;
@@ -30,6 +49,8 @@ public class ModelGrievance {
         FirebaseUID = firebaseUID;
         AssignedHelpName = assignedHelpName;
         AssignedHelpNumber = assignedHelpNumber;
+        RecordedTime = recordedTime;
+        RecordedDate = recordedDate;
     }
 
     public String getCategory() {

@@ -16,6 +16,8 @@ public class ModelGrievanceAll {
     String AssignedHelpNameFixed;
     String AssignedHelpNumberFixed;
 
+    String RecordedTime;
+    String RecordedDate;
 
     public Boolean getDONE() {
         return DONE;
@@ -25,7 +27,23 @@ public class ModelGrievanceAll {
         this.DONE = DONE;
     }
 
-    public ModelGrievanceAll(String category, String grievance, String preferredTime, String preferredDate, String flat, String citizenName, String citizenPhone, Boolean DONE, String firebaseUID, String dateFixed, String timeFixed, String assignedHelpNameFixed, String assignedHelpNumberFixed) {
+    public String getRecordedTime() {
+        return RecordedTime;
+    }
+
+    public void setRecordedTime(String recordedTime) {
+        RecordedTime = recordedTime;
+    }
+
+    public String getRecordedDate() {
+        return RecordedDate;
+    }
+
+    public void setRecordedDate(String recordedDate) {
+        RecordedDate = recordedDate;
+    }
+
+    public ModelGrievanceAll(String category, String grievance, String preferredTime, String preferredDate, String flat, String citizenName, String citizenPhone, Boolean DONE, String firebaseUID, String dateFixed, String timeFixed, String assignedHelpNameFixed, String assignedHelpNumberFixed, String recordedTime, String recordedDate) {
         Category = category;
         Grievance = grievance;
         PreferredTime = preferredTime;
@@ -39,6 +57,8 @@ public class ModelGrievanceAll {
         TimeFixed = timeFixed;
         AssignedHelpNameFixed = assignedHelpNameFixed;
         AssignedHelpNumberFixed = assignedHelpNumberFixed;
+        RecordedTime = recordedTime;
+        RecordedDate = recordedDate;
     }
 
     public ModelGrievanceAll() {

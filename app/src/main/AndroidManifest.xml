@@ -16,10 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
 
-        <activity android:name=".citizen.Activity.NewGrievanceActivity"></activity>
-        <activity android:name=".citizen.Activity.GuestListOTPVerificationActivity" />
-        <activity android:name=".citizen.Activity.AddNewGuestListActivity" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -28,7 +24,13 @@
             android:value="AIzaSyAEOGV3I10vQhnEehudOk_wLTqJmGu0Ml8" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- Activities -->
+            android:value="@integer/google_play_services_version" />
+
+        <!-- Activities -->
+
+        <activity android:name=".citizen.Activity.NewGrievanceActivity"/>
+        <activity android:name=".citizen.Activity.GuestListOTPVerificationActivity" />
+        <activity android:name=".citizen.Activity.AddNewGuestListActivity" />
         <activity android:name=".citizen.Activity.MapFamilyActivity" />
         <activity android:name=".citizen.Activity.AddNewFamilyActivity" />
         <activity android:name=".guard.Activity.CallActivity" />

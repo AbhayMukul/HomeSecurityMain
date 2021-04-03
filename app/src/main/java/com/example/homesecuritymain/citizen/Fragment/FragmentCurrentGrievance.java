@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGrievanceActive;
@@ -31,6 +32,8 @@ public class FragmentCurrentGrievance extends Fragment {
     FirebaseRecyclerOptions<ModelGrievance> option;
     FirebaseRecyclerAdapter<ModelGrievance, AdapterGrievanceActive> firebaseRecyclerAdapter;
 
+    DatabaseReference mUserDatabaseGrievance,mUserDatabaseCitizen;
+
     public static FragmentCurrentGrievance getInstance(){
         FragmentCurrentGrievance fragmentCurrentGrievance = new FragmentCurrentGrievance();
         return fragmentCurrentGrievance;
@@ -46,6 +49,9 @@ public class FragmentCurrentGrievance extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
+
+        mUserDatabaseGrievance = FirebaseDatabase.getInstance().getReference("Grievance");
+        mUserDatabaseCitizen = FirebaseDatabase.getInstance().getReference("citizen");
 
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -69,14 +75,17 @@ public class FragmentCurrentGrievance extends Fragment {
                 adapter.tvCategory.setText(model.getCategory());
                 adapter.tvDate.setText(model.getPreferredDate());
                 adapter.tvTime.setText(model.getPreferredTime());
+                adapter.tvDescription.setText(model.getGrievance());
 
-//                if(model.getAssignedHelpName() == "") {
+                if(model.getAssignedHelpName() == "") {
                     adapter.tvName.setText("yet to be assigned");
                     adapter.btnCall.setVisibility(View.GONE);
-//                }else {
-//                    adapter.tvName.setText(model.getAssignedHelpName());
-//                    adapter.btnCall.setText(model.getAssignedHelpNumber());
-//                }
+                    adapter.btnDone.setVisibility(View.GONE);
+                }else {
+                    adapter.tvName.setText(model.getAssignedHelpName());
+                    adapter.btnDone.setVisibility(View.VISIBLE);
+                    adapter.btnCall.setText(model.getAssignedHelpNumber());
+                }
 
                 adapter.tvMoreDetails.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -88,6 +97,35 @@ public class FragmentCurrentGrievance extends Fragment {
                             adapter.tvMoreDetails.setText("More Details");
                             adapter.linearLayout.setVisibility(View.GONE);
                         }
+                    }
+                });
+
+                adapter.tvRemove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mUserDatabaseCitizen.child("demo").child("Grievance").child("Active").child(model.getFirebaseUID()).removeValue();
+                        mUserDatabaseGrievance.child("Active").child(model.getFirebaseUID()).removeValue();
+                    }
+                });
+
+                adapter.btnDone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //remove from active
+                        mUserDatabaseCitizen.child("demo").child("Grievance").child("Active").child(model.getFirebaseUID()).removeValue();
+                        mUserDatabaseGrievance.child("Active").child(model.getFirebaseUID()).removeValue();
+
+                        //set false in all
+                        mUserDatabaseCitizen.child("demo").child("Grievance").child("All").child(model.getFirebaseUID()).child("done").setValue(true);
+                        mUserDatabaseGrievance.child("All").child(model.getFirebaseUID()).child("done").setValue(true);
+
+                        //set Date fixed
+                        mUserDatabaseCitizen.child("demo").child("Grievance").child("All").child(model.getFirebaseUID()).child("dateFixed").setValue(new DateAndTimeClass().getCurrentDate());
+                        mUserDatabaseGrievance.child("All").child(model.getFirebaseUID()).child("dateFixed").setValue(new DateAndTimeClass().getCurrentDate());
+
+                        //set Date fixed
+                        mUserDatabaseCitizen.child("demo").child("Grievance").child("All").child(model.getFirebaseUID()).child("timeFixed").setValue(new DateAndTimeClass().getCurrentTime());
+                        mUserDatabaseGrievance.child("All").child(model.getFirebaseUID()).child("timeFixed").setValue(new DateAndTimeClass().getCurrentTime());
                     }
                 });
             }

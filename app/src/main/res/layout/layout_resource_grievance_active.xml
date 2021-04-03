@@ -91,17 +91,53 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/Tv_Lr_GrievanceAll_MoreDetails"
-                android:layout_width="wrap_content"
+            <Button
+                android:layout_marginRight ="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/Btn_Lr_GrievanceActive_Done"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_round_corner_rectangle"
+                android:backgroundTint="@color/background_8"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:text="DONE" />
+
+            <LinearLayout
                 android:layout_marginTop="8dp"
-                android:gravity="right"
-                android:paddingRight="8dp"
-                android:text="More Details"
-                android:textColor="@color/background_5"
-                android:textSize="16dp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/Tv_Lr_GrievanceAll_MoreDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="More Details"
+                    android:textColor="@color/purple_200"
+                    android:textSize="16dp" />
+                <TextView
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/Tv_Lr_GrievanceAll_Remove"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Remove"
+                    android:textColor="@color/background_5"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_edit_button"
+                    android:id="@+id/Iv_Lr_GrievanceAll_Edit"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/Ll_Lr_GrievanceActive"
