@@ -112,15 +112,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:clickable="false"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:id="@+id/Tv_Lr_GrievanceAll_MoreDetails"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="More Details"
-                    android:textColor="@color/purple_200"
                     android:textSize="16dp" />
                 <TextView
+                    android:clickable="false"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:gravity="center"
                     android:layout_weight="1"
                     android:id="@+id/Tv_Lr_GrievanceAll_Remove"
@@ -131,6 +134,8 @@
                     android:textSize="16dp" />
 
                 <ImageView
+                    android:clickable="false"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

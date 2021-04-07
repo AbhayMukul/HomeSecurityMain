@@ -35,15 +35,14 @@
                 android:id="@+id/Tv_Lr_GuestActiveCitizen_GuestWork"/>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/Tv_Lr_GuestActiveCitizen_Stop"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+        <ImageView
+            android:clickable="false"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/ic_stop"
+            android:id="@+id/Iv_Lr_GuestActiveCitizen_Stop"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
             android:layout_margin="16dp"
-            android:drawableTop="@drawable/ic_stop"
-            android:text="STOP"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="0.2"

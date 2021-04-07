@@ -49,11 +49,11 @@ public class CitizenMainActivity extends AppCompatActivity {
     private void setData() {
         arrayList = new ArrayList<>();
 
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_group, "GUESTS", "#baffc9",new Intent(CitizenMainActivity.this,GuestsActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_guest_list, "GUESTLIST", "#da5180",new Intent(CitizenMainActivity.this,GuestListActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_file, "NOTICE BOARD", "#da5180",new Intent(CitizenMainActivity.this,NoticeActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_family, "FAMILY", "#da5180",new Intent(CitizenMainActivity.this,FamilyActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_review, "GRIEVANCE REDRESSAL", "#da5180",new Intent(CitizenMainActivity.this,GrievanceAddressalActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_group, "GUESTS", "#C8F69B",new Intent(CitizenMainActivity.this,GuestsActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_guest_list, "GUESTLIST", "#FFEEA5",new Intent(CitizenMainActivity.this,GuestListActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_file, "NOTICE BOARD", "#FFCBA5",new Intent(CitizenMainActivity.this,NoticeActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_family, "FAMILY", "#FFB1AF",new Intent(CitizenMainActivity.this,FamilyActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_review, "GRIEVANCE REDRESSAL", "#D6D4FF",new Intent(CitizenMainActivity.this,GrievanceAddressalActivity.class)));
     }
 
     private void setAdapter() {

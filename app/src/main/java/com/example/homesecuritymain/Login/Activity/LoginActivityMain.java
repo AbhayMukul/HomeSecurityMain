@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login;
+package com.example.homesecuritymain.Login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.example.homesecuritymain.guard.Activity.GuardMainActivity;
 
 public class LoginActivityMain extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class LoginActivityMain extends AppCompatActivity {
         btnCitizen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivityMain.this, CitizenMainActivity.class));
+                startActivity(new Intent(LoginActivityMain.this, LoginCitizenActivity.class));
             }
         });
 

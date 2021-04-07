@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_1"
     android:layout_height="match_parent"
     tools:context=".citizen.Activity.CitizenMainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -69,15 +68,12 @@
                     android:text="Welcome to your Home's smart Application" />
 
             </LinearLayout>
-
+c
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:backgroundTint="@color/background_1"
-            android:background="@drawable/background_round_corner_rectangle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_height="match_parent"
             android:id="@+id/Rv_CitizenMainActivity"/>
 
     </LinearLayout>

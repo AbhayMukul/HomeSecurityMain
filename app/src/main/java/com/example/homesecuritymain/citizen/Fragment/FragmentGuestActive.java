@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DatabaseRefrencesFirebase;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGuestActiveCitizen;
@@ -30,6 +34,8 @@ public class FragmentGuestActive extends Fragment {
     FirebaseRecyclerOptions<ModelActiveGuest> option;
     FirebaseRecyclerAdapter<ModelActiveGuest, AdapterGuestActiveCitizen> firebaseRecyclerAdapter;
 
+    CommonClass object;
+
     public static FragmentGuestActive getInstance(){
         FragmentGuestActive fragmentGuestActive = new FragmentGuestActive();
         return fragmentGuestActive;
@@ -46,7 +52,8 @@ public class FragmentGuestActive extends Fragment {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
 
-        mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("guest").child("Active");
+        mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("GUEST").child("Active");
+        object = new CommonClass();
 
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -77,14 +84,38 @@ public class FragmentGuestActive extends Fragment {
                     }
                 });
 
-                adapter.tvStop.setOnClickListener(new View.OnClickListener() {
+                adapter.imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //set Boolean STOP to true
-                        if(model.getSTOP()) {
-                            mUserDatabaseGuest.child(model.getKeyUID()).child("STOP").setValue(true);
-                        }else
-                            mUserDatabaseGuest.child(model.getKeyUID()).child("STOP").setValue(false);
+                        object.referenceGuestCitizenActive("demo").child(model.getKeyUID()).child("stop").setValue(!model.getSTOP());
+                        object.referenceGuestGuardActive().child(model.getKeyUID()).child("stop").setValue(!model.getSTOP());
+                    }
+                });
+
+                adapter.btnExit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!model.getSTOP()) {
+                            //set Value for time and date for exit
+                            //Citizen
+                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("citizenOut").setValue("");
+                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
+                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
+
+                            //Guard
+                            object.referenceGuestGuardAll().child(model.getKeyUID()).child("citizenOut").setValue("citizen name");
+                            object.referenceGuestGuardAll().child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
+                            object.referenceGuestGuardAll().child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
+
+                            //remove value from Active
+                            object.referenceGuestCitizenActive("demo").child(model.getKeyUID()).removeValue();
+
+                            //allow guard exit from society
+                            object.referenceGuestGuardActive().child(model.getKeyUID()).child("allowedExit").setValue(true);
+                        }else {
+                            Toast.makeText(getContext(), "the guest cannot exit due to being stopped", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

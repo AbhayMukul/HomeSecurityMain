@@ -20,6 +20,8 @@ import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Model.ModelGrievance;
 import com.example.homesecuritymain.citizen.Model.ModelGrievanceAll;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -145,4 +147,15 @@ public class NewGrievanceActivity extends AppCompatActivity {
         );
         timePickerDialog.show();
     }
+
+//    private void showTimepickerDialogue(){
+//        MaterialTimePicker picker =
+//                new MaterialTimePicker.Builder()
+//                        .setTimeFormat(TimeFormat.CLOCK_12H)
+//                        .setHour(12)
+//                        .setMinute(10).setTitleText("done")
+//                        .build();
+//
+//        picker.show(fragmentManager, "tag");
+//    }
 }

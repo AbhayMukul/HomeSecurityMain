@@ -18,8 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DatabaseRefrencesFirebase;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
+import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuestGuard;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.R;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +48,8 @@ public class CallActivity extends AppCompatActivity implements Serializable {
     DatabaseReference mUserDatabaseCitizen;
     DatabaseReference mUserDatabaseGuest;
 
+    CommonClass object;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,7 @@ public class CallActivity extends AppCompatActivity implements Serializable {
 
         initialize();
 
+        object = new CommonClass();
         mUserDatabaseCitizen = FirebaseDatabase.getInstance().getReference("citizen");
         mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("guest");
 
@@ -111,14 +117,15 @@ public class CallActivity extends AppCompatActivity implements Serializable {
 
         //create model
         ModelAllGuest modelAllGuest = new ModelAllGuest(modelActiveGuest.getName(),modelActiveGuest.getFlat(),modelActiveGuest.getNumber(),modelActiveGuest.getWork(),modelActiveGuest.getKeyUID(),dateAndTimeClass.getCurrentDate(),dateAndTimeClass.getCurrentTime(),"100","CitizenID","","","","","","",false,true);
+        ModelActiveGuestGuard modelActiveGuestGuard = new ModelActiveGuestGuard(modelActiveGuest.getName(),modelActiveGuest.getFlat(),modelActiveGuest.getNumber(),modelActiveGuest.getWork(),modelActiveGuest.getKeyUID(),modelActiveGuest.getTimeIn(),false,false);
 
         //set Citizen
-        mUserDatabaseCitizen.child(modelActiveGuest.getFlat()).child("GUEST").child("Active").child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuest);
-        mUserDatabaseCitizen.child(modelActiveGuest.getFlat()).child("GUEST").child("All").child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
+        object.referenceGuestCitizenActive("demo").child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuest);
+        object.referenceGuestCitizenAll("demo").child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
 
         //set Guest
-        mUserDatabaseGuest.child("Active").child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuest);
-        mUserDatabaseGuest.child("All").child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
+        object.referenceGuestGuardActive().child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuestGuard);
+        object.referenceGuestGuardAll().child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
     }
 
 

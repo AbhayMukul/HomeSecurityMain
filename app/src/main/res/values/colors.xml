@@ -17,5 +17,7 @@
     <color name="background_6">#ffffff</color>
     <color name="background_7">#98b1e4</color>
     <color name="background_8">#8d74b2</color>
+    <color name="background_10">#9DBAD5</color>
+    <color name="main_background">#6C3A91</color>
 
 </resources>

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -71,13 +72,14 @@ public class FragmentCurrentGrievance extends Fragment {
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<ModelGrievance, AdapterGrievanceActive>(option) {
             @Override
             protected void onBindViewHolder(@NonNull AdapterGrievanceActive adapter, int i, @NonNull ModelGrievance model) {
+
                 adapter.linearLayout.setVisibility(View.GONE);
                 adapter.tvCategory.setText(model.getCategory());
                 adapter.tvDate.setText(model.getPreferredDate());
                 adapter.tvTime.setText(model.getPreferredTime());
                 adapter.tvDescription.setText(model.getGrievance());
 
-                if(model.getAssignedHelpName() == "") {
+                if(model.getAssignedHelpName().equals("")) {
                     adapter.tvName.setText("yet to be assigned");
                     adapter.btnCall.setVisibility(View.GONE);
                     adapter.btnDone.setVisibility(View.GONE);

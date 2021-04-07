@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homesecuritymain.R;
@@ -31,12 +32,15 @@ public class AdapterRecyclerViewCitizenMainActivity extends RecyclerView.Adapter
         public ImageView imageView;
         public TextView tvName;
         public LinearLayout linearLayout;
+        public CardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.Lr_Iv_CitizenMainActivity_logo);
             tvName = itemView.findViewById(R.id.Lr_Tv_CitizenMainActivity_Name);
             linearLayout = itemView.findViewById(R.id.Lr_Ll_CitizenMainActivty);
+            cardView = itemView.findViewById(R.id.Cv_Lr_CitizenMainActivty);
+
         }
     }
 
@@ -53,7 +57,7 @@ public class AdapterRecyclerViewCitizenMainActivity extends RecyclerView.Adapter
         holder.tvName.setText(arrayList.get(position).getName());
 
         //set Background
-        holder.linearLayout.setBackgroundColor(Color.parseColor(arrayList.get(position).getBackground()));
+        holder.cardView.setBackgroundColor(Color.parseColor(arrayList.get(position).getBackground()));
 
         //set Icon
         holder.imageView.setImageResource(arrayList.get(position).getIcon());

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:id="@+id/Lr_Ll_CitizenMainActivty"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,8 +9,15 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/black"
+        app:cardElevation="8dp"
+        android:id="@+id/Cv_Lr_CitizenMainActivty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,21 +28,21 @@
             android:weightSum="1">
 
             <ImageView
-                android:layout_gravity="center"
-                android:layout_weight="0.1"
                 android:id="@+id/Lr_Iv_CitizenMainActivity_logo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.1"
                 android:src="@drawable/ic_guest_list" />
 
             <TextView
-                android:layout_marginLeft="16dp"
-                android:gravity="left"
-                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:layout_weight="0.9"
                 android:id="@+id/Lr_Tv_CitizenMainActivity_Name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="0.9"
+                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+                android:gravity="left"
                 android:text="ACTIVE GUEST"
                 android:textSize="24dp"
                 android:textStyle="bold" />
