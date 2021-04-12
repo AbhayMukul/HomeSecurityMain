@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterFamily;
 import com.example.homesecuritymain.citizen.Model.ModelFamilyMember;
@@ -25,13 +29,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FamilyActivity extends AppCompatActivity {
-    private TextView tvNewFamily;
-
     public RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-
     FirebaseRecyclerOptions<ModelFamilyMember> option;
     FirebaseRecyclerAdapter<ModelFamilyMember, AdapterFamily> firebaseRecyclerAdapter;
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
+    String flat, admin;
+    Boolean ADMIN;
+    private TextView tvNewFamily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,18 @@ public class FamilyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_family);
 
         initialize();
+
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+        flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, "");
+        admin = sharedPreferences.getString(sharedPrefrencesClass.SP_ADMIN, "");
+
+        if (admin.equals("false")) {
+            ADMIN = false;
+            tvNewFamily.setVisibility(View.GONE);
+        } else {
+            ADMIN = true;
+            tvNewFamily.setVisibility(View.VISIBLE);
+        }
 
         //show views
         linearLayoutManager = new LinearLayoutManager(FamilyActivity.this);
@@ -48,7 +66,7 @@ public class FamilyActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        option = new FirebaseRecyclerOptions.Builder<ModelFamilyMember>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child("demo").child("family"), ModelFamilyMember.class).build();
+        option = new FirebaseRecyclerOptions.Builder<ModelFamilyMember>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child(flat).child("family"), ModelFamilyMember.class).build();
         load();
 
         tvNewFamily.setOnClickListener(new View.OnClickListener() {
@@ -64,28 +82,20 @@ public class FamilyActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull AdapterFamily adapter, int i, @NonNull ModelFamilyMember model) {
                 adapter.tvName.setText(model.getName());
-//                adapter.tvPhone.setText(model.getPhone());
 
                 adapter.tvLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(FamilyActivity.this,MapFamilyActivity.class));
+                        //set intent
+                        Intent intent = new Intent(FamilyActivity.this,MapFamilyActivity.class);
+
+                        //set Extra
+                        intent.putExtra("phone",model.getPhone());
+
+                        //start Activity
+                        startActivity(intent);
                     }
                 });
-
-//                adapter.tvLocation.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        //set intent
-//                        Intent intent = new Intent(FamilyActivity.this,MapFamilyActivity.class);
-//
-//                        //set Extra
-//                        intent.putExtra("phone",model.getPhone());
-//
-//                        //start Activity
-//                        startActivity(intent);
-//                    }
-//                });
             }
 
             @NonNull

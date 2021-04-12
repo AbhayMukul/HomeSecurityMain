@@ -12,7 +12,7 @@ import com.example.homesecuritymain.R;
 import com.google.android.gms.maps.SupportMapFragment;
 
 public class AdapterFamily extends RecyclerView.ViewHolder{
-    public TextView tvName,tvPhone,tvLocation;
+    public TextView tvName,tvLocation;
     public ImageView imvSetting;
 
     public SupportMapFragment supportMapFragment;
@@ -23,10 +23,5 @@ public class AdapterFamily extends RecyclerView.ViewHolder{
         tvName = itemView.findViewById(R.id.Tv_Lr_FamilyActivity_Name);
 
         imvSetting = itemView.findViewById(R.id.Iv_Lr_FamilyActivity_Setting);
-//        supportMapFragment = itemView.findViewById(R.id.mapFragment);
-
-//        tvPhone = itemView.findViewById(R.id.Tv_Lr_FamilyActivity_Phone);
-//
-//        btnAdmin = itemView.findViewById(R.id.Btn_Lr_FamilyActivity_MakeAdmin);
     }
 }

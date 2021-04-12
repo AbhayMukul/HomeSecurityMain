@@ -3,7 +3,9 @@ package com.example.homesecuritymain.Login.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,13 +37,14 @@ public class LoginCitizenActivity extends AppCompatActivity {
     //OTP
     String verification;
     PhoneAuthProvider.ForceResendingToken Token;
-
-    private EditText edPhone, edPassword, edOTP;
+    //shared Prefrence
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
     private TextView tvOTP;
     private TextInputLayout tilPhone, tilOTP, tilPassword;
     private TextInputEditText tiEdPhone, tiEdOTP, tiEdPassword;
     private Button btn;
-    private String phone = "8793215306", password, OTP;
+    private String phone, password, OTP;
     private int i = 0;
     private CommonClass object;
 
@@ -50,6 +54,8 @@ public class LoginCitizenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login_citizen);
 
         initialize();
+
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
 
         object = new CommonClass();
 
@@ -68,37 +74,35 @@ public class LoginCitizenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getText();
 
-                if(phone.equals("15306")){
-                    startActivity(new Intent(LoginCitizenActivity.this,CreateNewAccountActivity.class));
+                if (phone.equals("15306")) {
+                    startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountActivity.class));
                     i = 100;
                 }
 
                 if (i == 0) {
                     //verification
+                    btn.setEnabled(false);
                     getPassword(new FirebaseCallBack() {
                         @Override
                         public void onCallBack(String string) {
                             password = string;
-                            Log.e("password in onCallBack","" + password);
+                            if (password != null) {
+                                requestOTP("+91" + phone);
+                            }
+                            if (password == null) {
+                                btn.setEnabled(true);
+                                tilPhone.setError("check the phone");
+                                Toast.makeText(LoginCitizenActivity.this, "The account with that phone does not exixts", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
-
-                    Log.e("password outside","" + password);
-
-                    if(password != null){
-                        btn.setEnabled(false);
-                        requestOTP("+91" + phone);
-                    }else {
-                        tilPhone.setError("check the phone");
-                        Toast.makeText(LoginCitizenActivity.this, "The account with that phone does not exixts", Toast.LENGTH_SHORT).show();
-                    }
 
                 }
 
                 if (i == 1) {
-                    Log.e("password in OTP check","" + password);
+                    Log.e("password in OTP check", "" + password);
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verification, OTP);
-                    VerifyAuth(credential,password);
+                    VerifyAuth(credential, password);
                     btn.setEnabled(false);
                 }
 
@@ -107,7 +111,12 @@ public class LoginCitizenActivity extends AppCompatActivity {
                         @Override
                         public void onCallBack(String string) {
                             if (tiEdPassword.getText().toString().trim().equals(string)) {
-                                startActivity(new Intent(LoginCitizenActivity.this, CitizenMainActivity.class));
+
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(sharedPrefrencesClass.SP_PHONE, phone);
+                                editor.commit();
+
+                                startActivity(new Intent(LoginCitizenActivity.this, LoginCitizenPreExistingAccountActivity.class));
                             } else {
                                 tilPassword.setError("check password");
                                 Toast.makeText(LoginCitizenActivity.this, "please enter the right password", Toast.LENGTH_SHORT).show();
@@ -135,10 +144,6 @@ public class LoginCitizenActivity extends AppCompatActivity {
 
     }
 
-    private interface FirebaseCallBack{
-        void onCallBack(String string);
-    }
-
     private void requestOTP(String phoneNum) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNum, 10L, TimeUnit.SECONDS, this, new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -153,7 +158,7 @@ public class LoginCitizenActivity extends AppCompatActivity {
 
                 Token = forceResendingToken;
 
-                Log.e("password in OTP sent","" + password);
+                Log.e("password in OTP sent", "" + password);
 
                 //visibility set for OTP edittext
                 tilOTP.setVisibility(View.VISIBLE);
@@ -179,7 +184,7 @@ public class LoginCitizenActivity extends AppCompatActivity {
         });
     }
 
-    private void VerifyAuth(PhoneAuthCredential credential,String password) {
+    private void VerifyAuth(PhoneAuthCredential credential, String password) {
         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -188,11 +193,16 @@ public class LoginCitizenActivity extends AppCompatActivity {
                     getPassword(new FirebaseCallBack() {
                         @Override
                         public void onCallBack(String string) {
-                            if(string.equals("")){
+                            if (string.equals("")) {
                                 //new User
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(sharedPrefrencesClass.SP_PHONE, tiEdPhone.getText().toString().trim());
+                                editor.commit();
+
                                 //set account
                                 startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountLoginActivity.class));
-                            }else {
+                                finish();
+                            }   else {
                                 tilPassword.setVisibility(View.VISIBLE);
                                 tiEdPassword.setVisibility(View.VISIBLE);
                                 i = 2;
@@ -201,7 +211,7 @@ public class LoginCitizenActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    Log.e("password after OTP verified","" + password);
+                    Log.e("password after OTP verified", "" + password);
 
                 } else {
                     btn.setEnabled(true);
@@ -210,7 +220,6 @@ public class LoginCitizenActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void getText() {
         phone = tiEdPhone.getText().toString().trim();
@@ -230,5 +239,9 @@ public class LoginCitizenActivity extends AppCompatActivity {
         tvOTP = findViewById(R.id.Tv_LoginCitizenActivity_SendOTP);
 
         btn = findViewById(R.id.Btn_LoginCitizenActivity_Next);
+    }
+
+    private interface FirebaseCallBack {
+        void onCallBack(String string);
     }
 }

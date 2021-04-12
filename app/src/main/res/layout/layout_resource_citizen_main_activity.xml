@@ -9,15 +9,16 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        app:strokeWidth="1dp"
-        app:strokeColor="@color/black"
-        app:cardElevation="8dp"
         android:id="@+id/Cv_Lr_CitizenMainActivty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
+        android:elevation="16dp"
         android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardUseCompatPadding="true">
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"

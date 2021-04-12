@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Login.Activity.LoginCitizenPreExistingAccountActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:elevation="16dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:strokeWidth="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="SELECT FLAT"
+            android:textColor="@color/background_5"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Rv_LoginCitizenPreExistingAccountActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:paddingBottom="16dp" />
+
+
+</LinearLayout>

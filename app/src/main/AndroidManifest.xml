@@ -15,7 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".Login.Activity.CreateNewAccountLoginActivity"></activity>
+        <activity android:name=".Login.Activity.WelcomeLoginActivity"></activity>
+        <activity android:name=".Login.SplashScreen"></activity>
+        <activity android:name=".TrailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Login.Activity.LoginCitizenPreExistingAccountActivity" />
+        <activity android:name=".Login.Activity.CreateNewAccountLoginActivity" />
         <activity android:name=".Login.Activity.CreateNewAccountActivity" />
         <activity android:name=".Login.Activity.LoginCitizenActivity" />
 
@@ -27,7 +37,8 @@
             android:value="AIzaSyAEOGV3I10vQhnEehudOk_wLTqJmGu0Ml8" />
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" /> <!-- Activities -->
+            android:value="@integer/google_play_services_version" />
+
         <activity android:name=".citizen.Activity.NewGrievanceActivity" />
         <activity android:name=".citizen.Activity.GuestListOTPVerificationActivity" />
         <activity android:name=".citizen.Activity.AddNewGuestListActivity" />
@@ -37,13 +48,7 @@
         <activity android:name=".guard.Activity.GuestListVerificationActivity" />
         <activity android:name=".guard.Activity.OTPActivity" />
         <activity android:name=".guard.Activity.AddNewGuestActivity" />
-        <activity android:name=".Login.Activity.LoginActivityMain">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Login.Activity.LoginActivityMain" />
         <activity android:name=".guard.Activity.GuardMainActivity" />
         <activity android:name=".citizen.Activity.SettingActivityCitizen" />
         <activity android:name=".citizen.Activity.GrievanceAddressalActivity" />

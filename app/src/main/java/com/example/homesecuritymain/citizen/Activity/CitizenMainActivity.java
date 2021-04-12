@@ -5,11 +5,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterRecyclerViewCitizenMainActivity;
 import com.example.homesecuritymain.citizen.Model.ModelRecyclerViewCitizenMainActivity;
@@ -17,6 +23,8 @@ import com.example.homesecuritymain.citizen.Model.ModelRecyclerViewCitizenMainAc
 import java.util.ArrayList;
 
 public class CitizenMainActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
 
     //recyclerView
     private RecyclerView recyclerView;
@@ -24,8 +32,13 @@ public class CitizenMainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private TextView tvName;
+
     //XML elements
     private ImageView imageView;
+
+    //strings
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +46,14 @@ public class CitizenMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_citizen_main);
 
         initialize();
+
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+        name = sharedPreferences.getString(sharedPrefrencesClass.SP_NAME,"");
+        tvName.setText(name);
+
+        Toast.makeText(this, "flat :- " + sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT,""), Toast.LENGTH_SHORT).show();
+
+        Log.e("name",name);
 
         //set RecyclerView
         setData();
@@ -67,5 +88,6 @@ public class CitizenMainActivity extends AppCompatActivity {
     private void initialize() {
         recyclerView = findViewById(R.id.Rv_CitizenMainActivity);
         imageView = findViewById(R.id.Iv_CitizenMainActivity_Setting);
+        tvName = findViewById(R.id.Tv_CitizenMainActivity_UserName);
     }
 }

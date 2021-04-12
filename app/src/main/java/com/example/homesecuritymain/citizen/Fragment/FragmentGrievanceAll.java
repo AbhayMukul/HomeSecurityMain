@@ -41,6 +41,7 @@ public class FragmentGrievanceAll extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
+
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);

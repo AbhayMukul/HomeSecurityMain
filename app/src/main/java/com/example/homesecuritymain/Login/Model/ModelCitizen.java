@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class ModelCitizen implements Serializable {
     String Name;
     String Phone;
+    String KeyUID;
 
     Boolean ADMIN;
 
@@ -55,9 +56,18 @@ public class ModelCitizen implements Serializable {
         DateJoined = dateJoined;
     }
 
-    public ModelCitizen(String name, String phone, Boolean ADMIN, String flat, String dateJoined) {
+    public String getKeyUID() {
+        return KeyUID;
+    }
+
+    public void setKeyUID(String keyUID) {
+        KeyUID = keyUID;
+    }
+
+    public ModelCitizen(String name, String phone, String keyUID, Boolean ADMIN, String flat, String dateJoined) {
         Name = name;
         Phone = phone;
+        KeyUID = keyUID;
         this.ADMIN = ADMIN;
         Flat = flat;
         DateJoined = dateJoined;

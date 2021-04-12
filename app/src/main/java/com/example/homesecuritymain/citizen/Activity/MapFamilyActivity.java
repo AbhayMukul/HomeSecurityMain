@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,6 +42,8 @@ public class MapFamilyActivity extends AppCompatActivity {
     //Firebase Database
     DatabaseReference databaseReference;
 
+    String phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class MapFamilyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map_family);
 
         initialize();
+
+        phone = getIntent().getStringExtra("phone");
 
         databaseReference = FirebaseDatabase.getInstance().getReference("citizen");
 
@@ -72,7 +77,7 @@ public class MapFamilyActivity extends AppCompatActivity {
     }
 
     private void getLocationLatLng() {
-        databaseReference.child("demo").child("location").child("90").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("demo").child("location").child(phone).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ModelLocation modelLocation = snapshot.getValue(ModelLocation.class);

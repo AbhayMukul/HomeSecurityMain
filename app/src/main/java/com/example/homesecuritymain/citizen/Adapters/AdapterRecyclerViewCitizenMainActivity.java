@@ -57,7 +57,7 @@ public class AdapterRecyclerViewCitizenMainActivity extends RecyclerView.Adapter
         holder.tvName.setText(arrayList.get(position).getName());
 
         //set Background
-        holder.cardView.setBackgroundColor(Color.parseColor(arrayList.get(position).getBackground()));
+//        holder.cardView.setBackgroundColor(Color.parseColor(arrayList.get(position).getBackground()));
 
         //set Icon
         holder.imageView.setImageResource(arrayList.get(position).getIcon());
