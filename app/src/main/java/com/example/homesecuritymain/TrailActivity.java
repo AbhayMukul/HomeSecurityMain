@@ -50,16 +50,13 @@ import com.karumi.dexter.listener.single.PermissionListener;
 public class TrailActivity extends AppCompatActivity {
     private static final int INTERVAL_UPDATE_MAP = 1;
     SupportMapFragment supportMapFragment;
-    private GoogleMap mMap;
-
     //Firebase DataBase
     DatabaseReference mUserDatabase;
-
     //google API for location services
-    private FusedLocationProviderClient fusedLocationProviderClient;
+    FusedLocationProviderClient fusedLocationProviderClient;
     LocationRequest locationRequest;
     LocationCallback locationCallBack;
-
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +67,7 @@ public class TrailActivity extends AppCompatActivity {
 
         setDexter();
 
-        getDeviceLocation();
+//        getDeviceLocation();
 
     }
 
@@ -78,7 +75,7 @@ public class TrailActivity extends AppCompatActivity {
         Dexter.withActivity(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse response) {
-                getDeviceLocation();
+//                getDeviceLocation();
                 upDateLocation();
             }
 
@@ -107,51 +104,51 @@ public class TrailActivity extends AppCompatActivity {
 
     private void setLocationRequest() {
         locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         locationRequest.setInterval(INTERVAL_UPDATE_MAP * 1000);
         locationRequest.setFastestInterval(5 * 1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
     }
 
     private PendingIntent getPendingIntent() {
         Intent intent = new Intent(this, MyLocationService.class);
         intent.setAction(MyLocationService.ACTION_PROCESS_UPDATE);
-        return PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//        intent.putExtra("flat","demo");
+        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private void getDeviceLocation() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(TrailActivity.this);
-        if(ActivityCompat.checkSelfPermission(TrailActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(TrailActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //permission granted
             Task<Location> task = fusedLocationProviderClient.getLastLocation();
             task.addOnSuccessListener(new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
-                    if(location != null){
+                    if (location != null) {
                         supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                             @Override
                             public void onMapReady(GoogleMap googleMap) {
-                                LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+                                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                                 MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("here");
-                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15f));
+                                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
                                 googleMap.addMarker(markerOptions).showInfoWindow();
                             }
                         });
                     }
                 }
             });
-        }
-        else {
-            ActivityCompat.requestPermissions(TrailActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},111);
+        } else {
+            ActivityCompat.requestPermissions(TrailActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 111){
-            if(grantResults.length > 0  && grantResults[0]  == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 111) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getDeviceLocation();
             }
-        }else
+        } else
             Toast.makeText(this, "permission needed", Toast.LENGTH_SHORT).show();
     }
 

@@ -12,9 +12,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterFamily;
@@ -25,8 +28,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FamilyActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
@@ -35,8 +41,9 @@ public class FamilyActivity extends AppCompatActivity {
     FirebaseRecyclerAdapter<ModelFamilyMember, AdapterFamily> firebaseRecyclerAdapter;
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
-    String flat, admin;
+    String flat;
     Boolean ADMIN;
+    CommonClass object;
     private TextView tvNewFamily;
 
     @Override
@@ -46,15 +53,17 @@ public class FamilyActivity extends AppCompatActivity {
 
         initialize();
 
+        object = new CommonClass();
+
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, "");
-        admin = sharedPreferences.getString(sharedPrefrencesClass.SP_ADMIN, "");
+        ADMIN = sharedPreferences.getBoolean(sharedPrefrencesClass.SP_ADMIN, false);
 
-        if (admin.equals("false")) {
-            ADMIN = false;
+        if (!ADMIN) {
+//            ADMIN = false;
             tvNewFamily.setVisibility(View.GONE);
         } else {
-            ADMIN = true;
+//            ADMIN = true;
             tvNewFamily.setVisibility(View.VISIBLE);
         }
 
@@ -82,18 +91,68 @@ public class FamilyActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull AdapterFamily adapter, int i, @NonNull ModelFamilyMember model) {
                 adapter.tvName.setText(model.getName());
+                String duration;
 
-                adapter.tvLocation.setOnClickListener(new View.OnClickListener() {
+                adapter.linearLayout.setVisibility(View.GONE);
+
+                if (!ADMIN) {
+                    adapter.imvSetting.setVisibility(View.GONE);
+                }
+
+                adapter.imvSetting.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (adapter.linearLayout.getVisibility() == View.GONE) {
+                            adapter.linearLayout.setVisibility(View.VISIBLE);
+                        } else {
+                            adapter.linearLayout.setVisibility(View.GONE);
+                        }
+                    }
+                });
+
+                ArrayAdapter<CharSequence> adapterCategory = ArrayAdapter.createFromResource(getApplicationContext(), R.array.Duration, android.R.layout.simple_spinner_item);
+                adapterCategory.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                adapter.spinner.setAdapter(adapterCategory);
+
+                object.referenceLocationCitizen(model.getFlat()).child(model.getPhone()).child("duration").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String string = snapshot.getValue().toString();
+
+                        int position = adapterCategory.getPosition(string);
+
+                        adapter.spinner.setSelection(position);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                adapter.btnLocation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //set intent
-                        Intent intent = new Intent(FamilyActivity.this,MapFamilyActivity.class);
+                        Intent intent = new Intent(FamilyActivity.this, MapFamilyActivity.class);
 
                         //set Extra
-                        intent.putExtra("phone",model.getPhone());
+                        intent.putExtra("phone", model.getPhone());
 
                         //start Activity
                         startActivity(intent);
+                    }
+                });
+
+                adapter.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        object.referenceLocationCitizen(flat).child(model.getPhone()).child("duration").setValue(adapter.spinner.getItemAtPosition(position).toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
                     }
                 });
             }

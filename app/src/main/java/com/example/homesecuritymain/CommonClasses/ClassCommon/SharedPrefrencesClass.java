@@ -14,4 +14,9 @@ public class SharedPrefrencesClass {
 
     public static String SP_ACCOUNTTYPE = "accountType";
 
+    //Location Details
+    public static String LocationDetails = "locationDetails";
+
+    public static String SP_UPDATETIME = "updatetime";
+
 }

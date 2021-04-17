@@ -111,7 +111,7 @@ public class AddNewFamilyActivity extends AppCompatActivity {
                 object.referenceLocationCitizen(flat).child(edPhone.getText().toString().trim()).setValue(modelLocation);
                 object.referenceFamilyCitizen(flat).child(edPhone.getText().toString().trim()).setValue(modelCitizen);
 
-                Toast.makeText(AddNewFamilyActivity.this, "A new family memeber has been added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddNewFamilyActivity.this, "A new family member has been added", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

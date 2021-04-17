@@ -16,14 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
         <activity android:name=".Login.Activity.WelcomeLoginActivity"></activity>
-        <activity android:name=".Login.SplashScreen"></activity>
-        <activity android:name=".TrailActivity">
+        <activity android:name=".Login.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TrailActivity"></activity>
         <activity android:name=".Login.Activity.LoginCitizenPreExistingAccountActivity" />
         <activity android:name=".Login.Activity.CreateNewAccountLoginActivity" />
         <activity android:name=".Login.Activity.CreateNewAccountActivity" />
@@ -38,6 +38,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <receiver android:name=".CommonClasses.BroadcastReciever.MyLocationService" />
+        <receiver android:name=".CommonClasses.BroadcastReciever.BroadcastReceiverLocationUpdate" />
 
         <activity android:name=".citizen.Activity.NewGrievanceActivity" />
         <activity android:name=".citizen.Activity.GuestListOTPVerificationActivity" />

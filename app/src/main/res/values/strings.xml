@@ -7,4 +7,11 @@
         <item>Electricity</item>
         <item>Gardening</item>
     </string-array>
+
+    <string-array name="Duration">
+        <item>STOP</item>
+        <item>15 mins</item>
+        <item>30 mins</item>
+        <item>60 mins</item>
+    </string-array>
 </resources>

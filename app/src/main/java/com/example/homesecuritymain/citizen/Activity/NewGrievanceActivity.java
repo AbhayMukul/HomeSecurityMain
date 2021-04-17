@@ -59,7 +59,6 @@ public class NewGrievanceActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
