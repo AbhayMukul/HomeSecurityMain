@@ -91,7 +91,6 @@ public class FamilyActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull AdapterFamily adapter, int i, @NonNull ModelFamilyMember model) {
                 adapter.tvName.setText(model.getName());
-                String duration;
 
                 adapter.linearLayout.setVisibility(View.GONE);
 

@@ -14,10 +14,12 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.BroadcastReceiverLocationUpdate;
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.Login.Activity.LoginActivityMain;
 import com.example.homesecuritymain.R;
@@ -42,14 +44,15 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 public class SplashScreen extends AppCompatActivity {
-    private static final int INTERVAL_UPDATE_MAP = 1;
+    Integer INTERVAL_UPDATE_MAP = 10;
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
 
     String accountType;
-    LocationRequest locationRequest,requestDuration;
+    LocationRequest locationRequest, requestDuration;
+    CommonClass object;
     //google API for location services
-    private FusedLocationProviderClient fusedLocationProviderClient;
+    private FusedLocationProviderClient fusedLocationProviderClient, fusedLocationProviderClientUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +62,12 @@ public class SplashScreen extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         accountType = sharedPreferences.getString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "");
 
-        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LocationDetails, Context.MODE_PRIVATE);
-        String location = sharedPreferences.getString(sharedPrefrencesClass.SP_UPDATETIME,"");
+        object = new CommonClass();
 
-        Toast.makeText(this, location, Toast.LENGTH_SHORT).show();
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LocationDetails, Context.MODE_PRIVATE);
+        String locationUpdate = sharedPreferences.getString(sharedPrefrencesClass.SP_UPDATETIME, "");
+
+        Log.e("INTERVAL", INTERVAL_UPDATE_MAP + "");
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -73,6 +78,7 @@ public class SplashScreen extends AppCompatActivity {
 
                     //set location to FirebaseDatabase
                     setLocation();
+
                 } else if (accountType.equals("")) {
                     startActivity(new Intent(SplashScreen.this, LoginActivityMain.class));
                 }
@@ -85,13 +91,11 @@ public class SplashScreen extends AppCompatActivity {
         setDexter();
     }
 
-    private void setDexter() {
+    public void setDexter() {
         Dexter.withActivity(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse response) {
-//                getDeviceLocation();
                 upDateLocation();
-                getLocationDurationUpdate();
             }
 
             @Override
@@ -106,26 +110,7 @@ public class SplashScreen extends AppCompatActivity {
         }).check();
     }
 
-    private void getLocationDurationUpdate() {
-        requestDuration = new LocationRequest();
-        requestDuration.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-        requestDuration.setInterval(INTERVAL_UPDATE_MAP * 1000);
-        requestDuration.setFastestInterval(5 * 1000);
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, getIntentDuration());
-    }
-
-    private PendingIntent getIntentDuration() {
-        Intent intent = new Intent(this, BroadcastReceiverLocationUpdate.class);
-        intent.setAction(MyLocationService.ACTION_PROCESS_UPDATE);
-        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-    }
+    //location update ------------------------------------------------------------------------------
 
     private void upDateLocation() {
         setLocationRequest();
@@ -142,7 +127,6 @@ public class SplashScreen extends AppCompatActivity {
         locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
         locationRequest.setInterval(INTERVAL_UPDATE_MAP * 1000);
-        locationRequest.setFastestInterval(5 * 1000);
     }
 
     private PendingIntent getPendingIntent() {
@@ -150,6 +134,8 @@ public class SplashScreen extends AppCompatActivity {
         intent.setAction(MyLocationService.ACTION_PROCESS_UPDATE);
         return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
+
+    //location current------------------------------------------------------------------------------
 
     private void getDeviceLocation() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(SplashScreen.this);

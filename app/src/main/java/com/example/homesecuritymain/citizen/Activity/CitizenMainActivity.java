@@ -48,12 +48,12 @@ public class CitizenMainActivity extends AppCompatActivity {
         initialize();
 
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
-        name = sharedPreferences.getString(sharedPrefrencesClass.SP_NAME,"");
+        name = sharedPreferences.getString(sharedPrefrencesClass.SP_NAME, "");
         tvName.setText(name);
 
-        Toast.makeText(this, "flat :- " + sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT,""), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "flat :- " + sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, ""), Toast.LENGTH_SHORT).show();
 
-        Log.e("name",name);
+        Log.e("name", name);
 
         //set RecyclerView
         setData();
@@ -62,7 +62,7 @@ public class CitizenMainActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CitizenMainActivity.this,SettingActivityCitizen.class));
+                startActivity(new Intent(CitizenMainActivity.this, SettingActivityCitizen.class));
             }
         });
     }
@@ -70,15 +70,15 @@ public class CitizenMainActivity extends AppCompatActivity {
     private void setData() {
         arrayList = new ArrayList<>();
 
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_group, "GUESTS", "#C8F69B",new Intent(CitizenMainActivity.this,GuestsActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_guest_list, "GUESTLIST", "#FFEEA5",new Intent(CitizenMainActivity.this,GuestListActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_file, "NOTICE BOARD", "#FFCBA5",new Intent(CitizenMainActivity.this,NoticeActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_family, "FAMILY", "#FFB1AF",new Intent(CitizenMainActivity.this,FamilyActivity.class)));
-        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_review, "GRIEVANCE REDRESSAL", "#D6D4FF",new Intent(CitizenMainActivity.this,GrievanceAddressalActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_group, "GUESTS", "#C8F69B", new Intent(CitizenMainActivity.this, GuestsActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_guest_list, "GUESTLIST", "#FFEEA5", new Intent(CitizenMainActivity.this, GuestListActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_file, "NOTICE BOARD", "#FFCBA5", new Intent(CitizenMainActivity.this, NoticeActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_family, "FAMILY", "#FFB1AF", new Intent(CitizenMainActivity.this, FamilyActivity.class)));
+        arrayList.add(new ModelRecyclerViewCitizenMainActivity(R.drawable.ic_review, "GRIEVANCE REDRESSAL", "#D6D4FF", new Intent(CitizenMainActivity.this, GrievanceAddressalActivity.class)));
     }
 
     private void setAdapter() {
-        AdapterRecyclerViewCitizenMainActivity adapter = new AdapterRecyclerViewCitizenMainActivity(arrayList,CitizenMainActivity.this);
+        AdapterRecyclerViewCitizenMainActivity adapter = new AdapterRecyclerViewCitizenMainActivity(arrayList, CitizenMainActivity.this);
 //        GridLayoutManager layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
