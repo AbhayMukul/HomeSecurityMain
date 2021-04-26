@@ -78,7 +78,6 @@ public class LoginCitizenActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountActivity.class));
                     i = 100;
                 }
-
                 if (i == 0) {
                     //verification
                     btn.setEnabled(false);

@@ -17,21 +17,20 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                app:strokeWidth="8dp">
 
                 <LinearLayout
+                    android:paddingTop="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingBottom="16dp"
                     android:weightSum="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
                         android:orientation="horizontal"
                         android:weightSum="1">
 
@@ -41,6 +40,7 @@
                             android:layout_weight="0.8">
 
                             <TextView
+                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Hi, "
@@ -55,24 +55,25 @@
                         </LinearLayout>
 
                         <ImageView
+                            android:layout_gravity="center"
                             android:id="@+id/Iv_CitizenMainActivity_Setting"
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="16dp"
+                            android:layout_height="wrap_content"
                             android:layout_weight="0.2"
                             android:src="@drawable/ic_baseline_settings_24" />
                     </LinearLayout>
 
                     <TextView
+                        android:layout_marginLeft="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:text="Welcome to your Home's smart Application"
                         android:textSize="16dp" />
 
                 </LinearLayout>
-                c
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView

@@ -10,19 +10,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:elevation="16dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
         app:strokeWidth="8dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:gravity="center"
             android:text="SELECT FLAT"
             android:textColor="@color/background_5"
             android:textSize="24dp"
@@ -30,15 +24,40 @@
 
     </androidx.cardview.widget.CardView>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Rv_LoginCitizenPreExistingAccountActivity"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="8dp"
-        android:paddingBottom="16dp" />
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Rv_LoginCitizenPreExistingAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true" />
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:id="@+id/Ll_LoginCitizenPreExistingAccountActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:src="@drawable/ic_sorry" />
+            <TextView
+                android:layout_marginTop="32dp"
+                android:textSize="24dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="It seems as if you are not yet a part of another flat yet"/>
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

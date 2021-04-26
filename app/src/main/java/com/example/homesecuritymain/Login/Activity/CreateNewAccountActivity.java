@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DatabaseRefrencesFirebase;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.Login.Model.ModelCitizen;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Model.ModelLocation;
@@ -52,7 +53,7 @@ public class CreateNewAccountActivity extends AppCompatActivity {
 
                     //register user with flat
                     refrence.mUserDatabaseLoginMain.child(key).setValue(new ModelCitizen(name,phone,key,true,flat,""));
-                    ModelLocation modelLocation = new ModelLocation("0.00", "0.00", edName.getText().toString().trim(), "", "0");
+                    ModelLocation modelLocation = new ModelLocation("0.00", "0.00", edName.getText().toString().trim(), new DateAndTimeClass().getCurrentTime(), "STOP");
 
                     object.referenceLocationCitizen(flat).child(edPhone.getText().toString().trim()).setValue(modelLocation);
                     object.referenceFamilyCitizen(flat).child(edPhone.getText().toString().trim()).setValue(new ModelCitizen(name,phone,key,true,flat,""));

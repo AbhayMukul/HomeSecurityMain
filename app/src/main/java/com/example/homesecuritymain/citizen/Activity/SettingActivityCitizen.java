@@ -12,10 +12,12 @@ import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.Login.Activity.LoginActivityMain;
+import com.example.homesecuritymain.Login.Activity.LoginCitizenPreExistingAccountActivity;
+import com.example.homesecuritymain.Login.Activity.LoginPreExistingAccountSplashScreenActivity;
 import com.example.homesecuritymain.R;
 
 public class SettingActivityCitizen extends AppCompatActivity {
-    private TextView tvChangePhone,tvChangePassword,tvExit;
+    private TextView tvChangePhone,tvChangePassword,tvChangeFlat,tvExit;
 
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
@@ -42,6 +44,13 @@ public class SettingActivityCitizen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        tvChangeFlat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivityCitizen.this, LoginCitizenPreExistingAccountActivity.class));
             }
         });
 
@@ -78,6 +87,7 @@ public class SettingActivityCitizen extends AppCompatActivity {
     private void initialize() {
         tvExit = findViewById(R.id.Tv_SettingActivityCitizen_Exit);
         tvChangePhone = findViewById(R.id.Tv_SettingActivityCitizen_ChangePhone);
+        tvChangeFlat = findViewById(R.id.Tv_SettingActivityCitizen_ChangeFlat);
         tvChangePassword = findViewById(R.id.Tv_SettingActivityCitizen_ChangePassword);
     }
 }

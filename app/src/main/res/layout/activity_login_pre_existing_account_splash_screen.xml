@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.Activity.LoginPreExistingAccountSplashScreenActivity">
+
+    <LinearLayout
+        android:layout_marginTop="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="48dp"
+            android:text="Hi,User"
+            android:textColor="@color/background_5"
+            android:gravity="center"
+            android:id="@+id/Tv_LoginPreExistingAccountSplashScreenActivity_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/background_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please give us a few seconds to fetch your account details" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:progressTint="@color/purple_500"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Pb_LoginPreExistingAccountSplashScreenActivity"
+        />
+
+</RelativeLayout>

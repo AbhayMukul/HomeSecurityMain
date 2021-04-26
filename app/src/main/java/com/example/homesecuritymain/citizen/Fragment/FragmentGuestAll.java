@@ -1,10 +1,13 @@
 package com.example.homesecuritymain.citizen.Fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.R;
@@ -25,6 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class FragmentGuestAll extends Fragment {
     public RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
+    String flat;
+
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
 
     //Firebase Database
     DatabaseReference mUserDatabaseGuest;
@@ -48,6 +56,9 @@ public class FragmentGuestAll extends Fragment {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
 
+        sharedPreferences = getContext().getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+        flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT,"");
+
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setStackFromEnd(true);
@@ -56,7 +67,7 @@ public class FragmentGuestAll extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        option = new FirebaseRecyclerOptions.Builder<ModelAllGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child("demo").child("GUEST").child("All"), ModelAllGuest.class).build();
+        option = new FirebaseRecyclerOptions.Builder<ModelAllGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child(flat).child("GUEST").child("All"), ModelAllGuest.class).build();
         load();
 
         return view;

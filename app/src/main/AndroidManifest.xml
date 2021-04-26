@@ -15,16 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".Login.Activity.WelcomeLoginActivity"></activity>
+        <activity android:name=".Login.Activity.LoginPreExistingAccountSplashScreenActivity"></activity>
+        <activity android:name=".Login.Activity.WelcomeLoginActivity" />
         <activity android:name=".Login.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrailActivity"></activity>
-        <activity android:name=".Login.Activity.LoginCitizenPreExistingAccountActivity" />
+        <activity android:name=".TrailActivity" />
+        <activity android:name=".Login.Activity.LoginCitizenPreExistingAccountActivity" >
+        </activity>
         <activity android:name=".Login.Activity.CreateNewAccountLoginActivity" />
         <activity android:name=".Login.Activity.CreateNewAccountActivity" />
         <activity android:name=".Login.Activity.LoginCitizenActivity" />

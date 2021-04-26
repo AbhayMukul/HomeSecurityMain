@@ -1,10 +1,14 @@
 package com.example.homesecuritymain.citizen.Fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,18 +20,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DatabaseRefrencesFirebase;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGuestActiveCitizen;
 import com.example.homesecuritymain.guard.Adapters.AdapterActiveGuard;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class FragmentGuestActive extends Fragment {
     public RecyclerView recyclerView;
+    public ImageView imageView;
+    public TextView textView;
+    public LinearLayout linearLayout;
     LinearLayoutManager linearLayoutManager;
+
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
+    String flat;
 
     //Firebase Database
     DatabaseReference mUserDatabaseGuest;
@@ -51,9 +66,35 @@ public class FragmentGuestActive extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_layout_layout_resource_recyclerview, container, false);
         recyclerView = view.findViewById(R.id.Tb_Lr_Rv);
+        imageView = view.findViewById(R.id.Tb_Lr_Iv);
+        textView = view.findViewById(R.id.Tb_Lr_Tv);
+        linearLayout = view.findViewById(R.id.Tb_Lr_Ll);
 
-        mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("GUEST").child("Active");
+        linearLayout.setVisibility(View.GONE);
+
+        sharedPreferences = getContext().getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+        flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT,"");
+
         object = new CommonClass();
+        object.referenceGuestCitizenActive(flat).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Long aLong = snapshot.getChildrenCount();
+                Integer guests = aLong.intValue();
+
+                if(guests == 0){
+                    recyclerView.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.VISIBLE);
+                    imageView.setImageResource(R.drawable.ic_clipboard);
+                    textView.setText("You dont have any active guests");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //show views
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -63,7 +104,7 @@ public class FragmentGuestActive extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        option = new FirebaseRecyclerOptions.Builder<ModelActiveGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child("demo").child("GUEST").child("Active"), ModelActiveGuest.class).build();
+        option = new FirebaseRecyclerOptions.Builder<ModelActiveGuest>().setQuery(FirebaseDatabase.getInstance().getReference().child("citizen").child(flat).child("GUEST").child("Active"), ModelActiveGuest.class).build();
         load();
 
         return view;
@@ -88,7 +129,7 @@ public class FragmentGuestActive extends Fragment {
                     @Override
                     public void onClick(View v) {
                         //set Boolean STOP to true
-                        object.referenceGuestCitizenActive("demo").child(model.getKeyUID()).child("stop").setValue(!model.getSTOP());
+                        object.referenceGuestCitizenActive(flat).child(model.getKeyUID()).child("stop").setValue(!model.getSTOP());
                         object.referenceGuestGuardActive().child(model.getKeyUID()).child("stop").setValue(!model.getSTOP());
                     }
                 });
@@ -99,9 +140,9 @@ public class FragmentGuestActive extends Fragment {
                         if(!model.getSTOP()) {
                             //set Value for time and date for exit
                             //Citizen
-                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("citizenOut").setValue("");
-                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
-                            object.referenceGuestCitizenAll("demo").child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
+                            object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("citizenOut").setValue("");
+                            object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
+                            object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
 
                             //Guard
                             object.referenceGuestGuardAll().child(model.getKeyUID()).child("citizenOut").setValue("citizen name");
@@ -109,7 +150,7 @@ public class FragmentGuestActive extends Fragment {
                             object.referenceGuestGuardAll().child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
 
                             //remove value from Active
-                            object.referenceGuestCitizenActive("demo").child(model.getKeyUID()).removeValue();
+                            object.referenceGuestCitizenActive(flat).child(model.getKeyUID()).removeValue();
 
                             //allow guard exit from society
                             object.referenceGuestGuardActive().child(model.getKeyUID()).child("allowedExit").setValue(true);

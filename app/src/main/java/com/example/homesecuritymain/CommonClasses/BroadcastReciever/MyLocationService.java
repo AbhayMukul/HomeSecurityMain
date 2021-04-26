@@ -56,69 +56,70 @@ public class MyLocationService extends BroadcastReceiver {
                     flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, "");
                     name = sharedPreferences.getString(sharedPrefrencesClass.SP_NAME, "");
 
-                    object.referenceLocationCitizen(flat).child(phone).child("duration").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //duration
-                            String string = snapshot.getValue().toString();
+                    if(!flat.equals("")) {
+                        object.referenceLocationCitizen(flat).child(phone).child("duration").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                //duration
+                                String string = snapshot.getValue().toString();
 
-                            //to get last update time
-                            if (!string.equals("STOP")) {
-                                object.referenceLocationCitizen(flat).child(phone).child("time").addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String time = snapshot.getValue().toString();
+                                //to get last update time
+                                if (!string.equals("STOP")) {
+                                    object.referenceLocationCitizen(flat).child(phone).child("time").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            String time = snapshot.getValue().toString();
 
-                                        Log.e("time", time);
-                                        Log.e("duration", string);
+                                            Log.e("time", time);
+                                            Log.e("duration", string);
 
-                                        SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
+                                            SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
 
-                                        Date d = dateAndTimeClass.StringToDate(time);
-                                        Calendar cal = Calendar.getInstance();
-                                        cal.setTime(d);
+                                            Date d = dateAndTimeClass.StringToDate(time);
+                                            Calendar cal = Calendar.getInstance();
+                                            cal.setTime(d);
 
-                                        timeUpdate = object.getLocationUpdateDuration(string);
+                                            timeUpdate = object.getLocationUpdateDuration(string);
 
-                                        cal.add(Calendar.SECOND, timeUpdate);
+                                            cal.add(Calendar.SECOND, timeUpdate);
 
-                                        String newTime = df.format(cal.getTime());
+                                            String newTime = df.format(cal.getTime());
 
-                                        Log.e("update at time", newTime);
+                                            Log.e("update at time", newTime);
 
-                                        //add duration to last time
-                                        Log.e("Date Check", dateAndTimeClass.DateCompare(newTime) + "");
-                                        if (dateAndTimeClass.DateCompare(newTime)) {
-                                            Log.e("updated at that time", "");
-                                            object.referenceLocationCitizen(flat).child(phone).child("latitude").setValue(location.getLatitude() + "");
-                                            object.referenceLocationCitizen(flat).child(phone).child("longitude").setValue(location.getLongitude() + "");
-                                            object.referenceLocationCitizen(flat).child(phone).child("time").setValue(dateAndTimeClass.getCurrentTime() + "");
+                                            //add duration to last time
+                                            Log.e("Date Check", dateAndTimeClass.DateCompare(newTime) + "");
+                                            if (dateAndTimeClass.DateCompare(newTime)) {
+                                                Log.e("updated at that time", "");
+                                                object.referenceLocationCitizen(flat).child(phone).child("latitude").setValue(location.getLatitude() + "");
+                                                object.referenceLocationCitizen(flat).child(phone).child("longitude").setValue(location.getLongitude() + "");
+                                                object.referenceLocationCitizen(flat).child(phone).child("time").setValue(dateAndTimeClass.getCurrentTime() + "");
+                                            }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
 
-                                    }
-                                });
+                                        }
+                                    });
+                                }
+
+                                if (string.equals("LIVE")) {
+                                    Log.e("updated Live", "updated");
+                                    Log.e("duration", string);
+                                    object.referenceLocationCitizen(flat).child(phone).child("latitude").setValue(location.getLatitude() + "");
+                                    object.referenceLocationCitizen(flat).child(phone).child("longitude").setValue(location.getLongitude() + "");
+                                    object.referenceLocationCitizen(flat).child(phone).child("time").setValue(dateAndTimeClass.getCurrentTime() + "");
+                                }
+
                             }
 
-                            if (string.equals("LIVE")) {
-                                Log.e("updated Live", "");
-                                Log.e("duration", string);
-                                object.referenceLocationCitizen(flat).child(phone).child("latitude").setValue(location.getLatitude() + "");
-                                object.referenceLocationCitizen(flat).child(phone).child("longitude").setValue(location.getLongitude() + "");
-                                object.referenceLocationCitizen(flat).child(phone).child("time").setValue(dateAndTimeClass.getCurrentTime() + "");
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
                             }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
+                        });
+                    }
                 }
             }
         }

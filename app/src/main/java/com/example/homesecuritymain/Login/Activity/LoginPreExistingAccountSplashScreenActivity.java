@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login;
+package com.example.homesecuritymain.Login.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,25 +14,19 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.homesecuritymain.CommonClasses.BroadcastReciever.BroadcastReceiverLocationUpdate;
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.Activity.LoginActivityMain;
+import com.example.homesecuritymain.Login.SplashScreen;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.TrailActivity;
 import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.karumi.dexter.Dexter;
@@ -43,41 +36,36 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
-public class SplashScreen extends AppCompatActivity {
-    Integer INTERVAL_UPDATE_MAP = 10;
+public class LoginPreExistingAccountSplashScreenActivity extends AppCompatActivity {
+    private TextView tvName;
+    private Integer INTERVAL_UPDATE_MAP = 10;
+
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
 
-    String accountType;
-    LocationRequest locationRequest, requestDuration;
+    LocationRequest locationRequest;
     //google API for location services
-    private FusedLocationProviderClient fusedLocationProviderClient, fusedLocationProviderClientUpdate;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_login_pre_existing_account_splash_screen);
+
+        sharedPrefrencesClass = new SharedPrefrencesClass();
+
+        initialize();
 
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
-        accountType = sharedPreferences.getString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "");
-
-        Log.e("INTERVAL", INTERVAL_UPDATE_MAP + "");
+        tvName.setText("Hi, " + sharedPreferences.getString(sharedPrefrencesClass.SP_NAME,""));
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (accountType.equals("citizen")) {
-                    //open citizen account
-                    startActivity(new Intent(SplashScreen.this, CitizenMainActivity.class));
-
-                    //set location to FirebaseDatabase
-                    setLocation();
-
-                } else if (accountType.equals("")) {
-                    startActivity(new Intent(SplashScreen.this, LoginActivityMain.class));
-                }
+                setLocation();
+                startActivity(new Intent(LoginPreExistingAccountSplashScreenActivity.this, CitizenMainActivity.class));
             }
-        }, 2500);
+        },2500);
 
     }
 
@@ -132,8 +120,8 @@ public class SplashScreen extends AppCompatActivity {
     //location current------------------------------------------------------------------------------
 
     private void getDeviceLocation() {
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(SplashScreen.this);
-        if (ActivityCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(LoginPreExistingAccountSplashScreenActivity.this);
+        if (ActivityCompat.checkSelfPermission(LoginPreExistingAccountSplashScreenActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //permission granted
             Task<Location> task = fusedLocationProviderClient.getLastLocation();
             task.addOnSuccessListener(new OnSuccessListener<Location>() {
@@ -144,7 +132,7 @@ public class SplashScreen extends AppCompatActivity {
                 }
             });
         } else {
-            ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
+            ActivityCompat.requestPermissions(LoginPreExistingAccountSplashScreenActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 111);
         }
     }
 
@@ -158,4 +146,8 @@ public class SplashScreen extends AppCompatActivity {
             Toast.makeText(this, "permission needed", Toast.LENGTH_SHORT).show();
     }
 
+
+    private void initialize() {
+        tvName = findViewById(R.id.Tv_LoginPreExistingAccountSplashScreenActivity_Name);
+    }
 }
