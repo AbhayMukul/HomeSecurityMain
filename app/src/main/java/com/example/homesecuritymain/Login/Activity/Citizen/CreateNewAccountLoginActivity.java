@@ -1,6 +1,5 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Citizen;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -16,12 +15,8 @@ import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 public class CreateNewAccountLoginActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
@@ -62,7 +57,7 @@ public class CreateNewAccountLoginActivity extends AppCompatActivity {
                     //update password
                     object.refrenceCitizenLoginPassword(phone).setValue(password);
                     //update date joined
-//                    object.referenceCitizenMainDateJoined(key).setValue(new DateAndTimeClass().getCurrentDate());
+                    object.referenceCitizenMainDateJoined(key).setValue(new DateAndTimeClass().getCurrentDate());
 
                     editor.putBoolean(sharedPrefrencesClass.SP_ADMIN,true);
 

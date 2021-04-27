@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenActivity;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.guard.Activity.GuardMainActivity;
 

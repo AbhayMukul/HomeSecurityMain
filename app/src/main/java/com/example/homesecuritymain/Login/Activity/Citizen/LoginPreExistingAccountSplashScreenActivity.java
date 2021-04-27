@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Citizen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +13,11 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
-import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.SplashScreen;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;

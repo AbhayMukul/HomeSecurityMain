@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login;
+package com.example.homesecuritymain.Login.Activity.Common;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,23 +16,13 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.homesecuritymain.CommonClasses.BroadcastReciever.BroadcastReceiverLocationUpdate;
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
-import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.Activity.LoginActivityMain;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.TrailActivity;
 import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.karumi.dexter.Dexter;

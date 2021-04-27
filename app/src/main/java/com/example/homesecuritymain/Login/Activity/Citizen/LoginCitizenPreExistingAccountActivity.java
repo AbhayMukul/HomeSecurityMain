@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Citizen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,18 +16,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DatabaseRefrencesFirebase;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.Login.Adapter.AdapterPreExistingAccoutFlat;
 import com.example.homesecuritymain.Login.Model.ModelCitizen;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginCitizenPreExistingAccountActivity extends AppCompatActivity {
@@ -58,7 +55,6 @@ public class LoginCitizenPreExistingAccountActivity extends AppCompatActivity {
 
         Toast.makeText(this, "flatKeyUID" + sharedPreferences.getString(sharedPrefrencesClass.SP_FLATUID,""), Toast.LENGTH_SHORT).show();
         Log.e("flatKeyUID",sharedPreferences.getString(sharedPrefrencesClass.SP_FLATUID,"") + "  ::");
-
 
         option = new FirebaseRecyclerOptions.Builder<ModelCitizen>().setQuery(new DatabaseRefrencesFirebase().mUserDatabaseLoginMain.orderByChild("phone").startAt(phone).endAt(phone + "/uf8ff"), ModelCitizen.class).build();
 

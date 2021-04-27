@@ -11,13 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.Activity.LoginActivityMain;
-import com.example.homesecuritymain.Login.Activity.LoginCitizenPreExistingAccountActivity;
-import com.example.homesecuritymain.Login.Activity.LoginPreExistingAccountSplashScreenActivity;
+import com.example.homesecuritymain.Login.Activity.Common.LoginActivityMain;
+import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenPreExistingAccountActivity;
 import com.example.homesecuritymain.R;
 
 public class SettingActivityCitizen extends AppCompatActivity {
-    private TextView tvChangePhone,tvChangePassword,tvChangeFlat,tvExit;
+    private TextView tvChangePhone,tvChangePassword,tvChangeFlat,tvExit,tvLocation;
 
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
@@ -51,6 +50,13 @@ public class SettingActivityCitizen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SettingActivityCitizen.this, LoginCitizenPreExistingAccountActivity.class));
+            }
+        });
+
+        tvLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivityCitizen.this,CitizenMapAccountActivity.class));
             }
         });
 
@@ -89,5 +95,6 @@ public class SettingActivityCitizen extends AppCompatActivity {
         tvChangePhone = findViewById(R.id.Tv_SettingActivityCitizen_ChangePhone);
         tvChangeFlat = findViewById(R.id.Tv_SettingActivityCitizen_ChangeFlat);
         tvChangePassword = findViewById(R.id.Tv_SettingActivityCitizen_ChangePassword);
+        tvLocation = findViewById(R.id.Tv_SettingActivityCitizen_LocationSetting);
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".citizen.Activity.GuestListActivity">
+    tools:context=".Admin.Activity.NoticeAdminActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,20 +21,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="GuestList"
+                android:text="NOTICES"
                 android:textColor="@color/background_5"
                 android:textSize="32dp" />
 
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/Rv_GuestListACtivity"
+            android:id="@+id/Rv_NoticeAdminActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/Ll_NoticeAdminActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:src="@drawable/ic_spam" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="No notices have been created yet"
+                android:textSize="24dp" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/Iv_GuestListActivity_NewGuest"
+        android:id="@+id/Iv_NoticeAdminActivity_NewNotice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -43,5 +68,6 @@
         android:background="@drawable/background_round_corner_rectangle"
         android:backgroundTint="@color/background_3"
         android:padding="18dp"
-        android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+        android:src="@drawable/ic_plus" />
+
 </RelativeLayout>

@@ -38,6 +38,23 @@ public class CommonClass extends ListActivity {
         }
     }
 
+    //-----------------------------------------------------------------------------------------ADMIN
+    public DatabaseReference referenceAdminAccountName(String Phone){
+        return databaseRefrencesFirebase.mUserDatabaseAdmin.child("Accounts").child("Name");
+    }
+
+    public DatabaseReference referenceAdminAccountPhone(String Phone){
+        return databaseRefrencesFirebase.mUserDatabaseAdmin.child("Accounts").child("Phone");
+    }
+
+    public DatabaseReference referenceAdminAccountPassword(String Phone){
+        return databaseRefrencesFirebase.mUserDatabaseAdmin.child("Accounts").child("Password");
+    }
+
+    public DatabaseReference referenceAdminNotices(){
+        return databaseRefrencesFirebase.mUserDatabaseAdmin.child("Notices");
+    }
+
     //---------------------------------------------------------------------------------------CITIZEN
     public DatabaseReference referenceGuestCitizenActive(String Flat) {
         return databaseRefrencesFirebase.mUserDatabaseCitizen.child(Flat).child("GUEST").child("Active");
@@ -53,6 +70,38 @@ public class CommonClass extends ListActivity {
 
     public DatabaseReference referenceLocationCitizen(String Flat) {
         return databaseRefrencesFirebase.mUserDatabaseCitizen.child(Flat).child("location");
+    }
+
+    public DatabaseReference referenceGuestListCitizen(String Flat) {
+        return databaseRefrencesFirebase.mUserDatabaseCitizen.child(Flat).child("GuestList");
+    }
+
+    public DatabaseReference referenceGrievanceCitizen(String Flat) {
+        return databaseRefrencesFirebase.mUserDatabaseCitizen.child(Flat).child("Grievance");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenActive(String Flat) {
+        return referenceGrievanceCitizen(Flat).child("Active");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenActiveAssignedHelpName(String Flat,String key){
+        return referenceGrievanceCitizenActive(Flat).child(key).child("assignedHelpName");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenActiveAssignedHelpNumber(String Flat,String key){
+        return referenceGrievanceCitizenActive(Flat).child(key).child("assignedHelpNumber");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenAll(String Flat) {
+        return referenceGrievanceCitizen(Flat).child("All");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenAllAssignedHelpName(String Flat,String key){
+        return referenceGrievanceCitizenActive(Flat).child(key).child("assignedHelpNameFixed");
+    }
+
+    public DatabaseReference referenceGrievanceCitizenAllAssignedHelpNumber(String Flat,String key){
+        return referenceGrievanceCitizenActive(Flat).child(key).child("assignedHelpNumberFixed");
     }
 
     //-----------------------------------------------------------------------------------------GUARD
@@ -85,4 +134,30 @@ public class CommonClass extends ListActivity {
     public DatabaseReference referenceCitizenMainDateJoined(String key) {
         return databaseRefrencesFirebase.mUserDatabaseLoginMain.child(key).child("dateJoined");
     }
+
+    //-------------------------------------------------------------------------------------GRIEVANCE
+    public DatabaseReference referenceGrievanceActive() {
+        return databaseRefrencesFirebase.mUserDatabaseGrievance.child("Active");
+    }
+
+    public DatabaseReference referenceGrievanceActiveAssignedHelpName(String key) {
+        return referenceGrievanceActive().child(key).child("assignedHelpName");
+    }
+
+    public DatabaseReference referenceGrievanceActiveAssignedHelpPhone(String key) {
+        return referenceGrievanceActive().child(key).child("assignedHelpNumber");
+    }
+
+    public DatabaseReference referenceGrievanceAll() {
+        return databaseRefrencesFirebase.mUserDatabaseGrievance.child("All");
+    }
+
+    public DatabaseReference referenceGrievanceAllAssignedHelpName(String key) {
+        return referenceGrievanceAll().child(key).child("assignedHelpNameFixed");
+    }
+
+    public DatabaseReference referenceGrievanceAllAssignedHelpPhone(String key) {
+        return referenceGrievanceAll().child(key).child("assignedHelpNumberFixed");
+    }
+
 }

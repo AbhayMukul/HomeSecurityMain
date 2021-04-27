@@ -78,7 +78,7 @@ public class AddNewFamilyActivity extends AppCompatActivity {
 
                 String key = FirebaseDatabase.getInstance().getReference().push().getKey();
 
-                ModelLocation modelLocation = new ModelLocation("0.00", "0.00", name, "", "0");
+                ModelLocation modelLocation = new ModelLocation("0.00", "0.00", name, new DateAndTimeClass().getCurrentTime(), "0");
                 ModelCitizen modelCitizen = new ModelCitizen(name,phone, key, aBoolean, flat, new DateAndTimeClass().getCurrentDate());
 
                 object.refrenceCitizenLoginPassword(phone).addValueEventListener(new ValueEventListener() {

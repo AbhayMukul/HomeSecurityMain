@@ -45,7 +45,6 @@ public class FragmentGuestActive extends Fragment {
     String flat;
 
     //Firebase Database
-    DatabaseReference mUserDatabaseGuest;
     FirebaseRecyclerOptions<ModelActiveGuest> option;
     FirebaseRecyclerAdapter<ModelActiveGuest, AdapterGuestActiveCitizen> firebaseRecyclerAdapter;
 

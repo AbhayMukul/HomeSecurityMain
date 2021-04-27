@@ -11,12 +11,12 @@ public class SharedPrefrencesClass {
     public static String SP_ADMIN = "admin";
     public static String SP_FLAT = "flat";
     public static String SP_LOGGEDIN = "loggedIN";
+    public static String SP_PASSWORD = "password";
 
     public static String SP_ACCOUNTTYPE = "accountType";
 
     //Location Details
     public static String LocationDetails = "locationDetails";
-
     public static String SP_UPDATETIME = "updatetime";
 
 }

@@ -20,7 +20,7 @@ public class AdapterFamily extends RecyclerView.ViewHolder {
 
     public Button btnLocation;
 
-    public LinearLayout linearLayout;
+    public LinearLayout linearLayout,linearLayoutAll;
     public Spinner spinner;
 
     public AdapterFamily(@NonNull View itemView) {
@@ -32,6 +32,7 @@ public class AdapterFamily extends RecyclerView.ViewHolder {
         imvSetting = itemView.findViewById(R.id.Iv_Lr_FamilyActivity_Setting);
 
         linearLayout = itemView.findViewById(R.id.Ll_Lr_FamilyActivity);
+        linearLayoutAll = itemView.findViewById(R.id.Ll_Lr_FamilyActivity_All);
 
         spinner = itemView.findViewById(R.id.Sp_Lr_FamilyActivity_Duration);
 

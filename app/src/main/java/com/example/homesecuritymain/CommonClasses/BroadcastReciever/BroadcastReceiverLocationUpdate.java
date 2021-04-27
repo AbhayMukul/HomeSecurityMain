@@ -5,18 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
-import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.SplashScreen;
+import com.example.homesecuritymain.Login.Activity.Common.SplashScreen;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class BroadcastReceiverLocationUpdate extends BroadcastReceiver {

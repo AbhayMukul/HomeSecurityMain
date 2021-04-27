@@ -129,6 +129,22 @@
                         android:text="CHANGE FLAT "
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/Tv_SettingActivityCitizen_LocationSetting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:drawableLeft="@drawable/ic_location"
+                        android:drawableRight="@drawable/ic_baseline_chevron_right_24"
+                        android:drawablePadding="8dp"
+                        android:elevation="16dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="left"
+                        android:padding="16dp"
+                        android:paddingTop="8dp"
+                        android:text="LOCATION SETTINGS"
+                        android:textStyle="bold" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>

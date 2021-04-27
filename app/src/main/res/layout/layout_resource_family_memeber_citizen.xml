@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/Ll_Lr_FamilyActivity_All"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -50,16 +51,16 @@
                 android:background="@color/black" />
 
             <Button
-                android:layout_margin="8dp"
-                android:padding="8dp"
+                android:id="@+id/Btn_Lr_FamilyActivity_Location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/purple_200"
                 android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:id="@+id/Btn_Lr_FamilyActivity_Location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="center"
+                android:padding="8dp"
                 android:text="Location" />
 
             <LinearLayout

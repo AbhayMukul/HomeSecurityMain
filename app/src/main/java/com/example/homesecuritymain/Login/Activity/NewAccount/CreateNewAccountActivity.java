@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.NewAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 

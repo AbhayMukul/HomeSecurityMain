@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Citizen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;

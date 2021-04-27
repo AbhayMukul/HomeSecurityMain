@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.Activity.AdminMainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:cardElevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="GRIEVANCE"
+                android:textColor="@color/background_5"
+                android:textSize="32dp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Rv_AdminMainActivity"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/Iv_AdminMainActivity_OpenLinerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round_corner_rectangle"
+            android:backgroundTint="@color/background_3"
+            android:padding="18dp"
+            android:src="@drawable/ic_baseline_emoji_objects_24" />
+
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Ll_AdminMainActivity_SettingsPannel"
+            >
+            <ImageView
+                android:elevation="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/Iv_AdminMainActivity_Notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_round_corner_rectangle"
+                android:backgroundTint="@color/purple_200"
+                android:padding="18dp"
+                android:src="@drawable/ic_new_email" />
+
+            <ImageView
+                android:layout_marginLeft="8dp"
+                android:id="@+id/Iv_AdminMainActivity_Guard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_round_corner_rectangle"
+                android:backgroundTint="@color/background_4"
+                android:padding="18dp"
+                android:src="@drawable/ic_baseline_person_add_alt_1_24" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

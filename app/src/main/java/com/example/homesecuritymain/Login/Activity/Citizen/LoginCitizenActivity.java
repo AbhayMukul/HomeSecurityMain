@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity;
+package com.example.homesecuritymain.Login.Activity.Citizen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,14 +10,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.Admin.Activity.AdminMainActivity;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
+import com.example.homesecuritymain.Login.Activity.NewAccount.CreateNewAccountActivity;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -73,6 +73,10 @@ public class LoginCitizenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getText();
+
+                if(phone.equals(911)){
+                    startActivity(new Intent(LoginCitizenActivity.this, AdminMainActivity.class));
+                }
 
                 if (phone.equals("15306")) {
                     startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountActivity.class));
