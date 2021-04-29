@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".Admin.Activity.NoticeReadActivity"></activity>
+        <activity android:name=".Admin.Activity.NewGuardCreationActivity"></activity>
+        <activity android:name=".Admin.Activity.AllGuardAdminActivity" />
+        <activity android:name=".Admin.Activity.NoticeReadActivity" />
         <activity android:name=".Admin.Activity.NewNoticeActivity" />
         <activity android:name=".Admin.Activity.NoticeAdminActivity" />
         <activity android:name=".Admin.Activity.AdminMainActivity">

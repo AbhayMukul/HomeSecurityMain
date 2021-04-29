@@ -2,6 +2,7 @@ package com.example.homesecuritymain.Login.Activity.Common;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
@@ -14,6 +15,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
@@ -37,10 +41,14 @@ public class SplashScreen extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
 
+    LinearLayout linearLayout;
+
     String accountType;
-    LocationRequest locationRequest, requestDuration;
+    LocationRequest locationRequest;
     //google API for location services
-    private FusedLocationProviderClient fusedLocationProviderClient, fusedLocationProviderClientUpdate;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+
+    Animation splashTopDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,12 @@ public class SplashScreen extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         accountType = sharedPreferences.getString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "");
+
+
+        linearLayout = findViewById(R.id.Ll_SplashScreen);
+        splashTopDown = AnimationUtils.loadAnimation(SplashScreen.this,R.anim.animation_top_down);
+
+        linearLayout.setAnimation(splashTopDown);
 
         Log.e("INTERVAL", INTERVAL_UPDATE_MAP + "");
 
@@ -62,8 +76,10 @@ public class SplashScreen extends AppCompatActivity {
                     //set location to FirebaseDatabase
                     setLocation();
 
+                    finish();
                 } else if (accountType.equals("")) {
                     startActivity(new Intent(SplashScreen.this, LoginActivityMain.class));
+                    finish();
                 }
             }
         }, 2500);

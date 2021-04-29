@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.homesecuritymain.Admin.Adapter.AdapterAdminGrievanceMain;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
+import com.example.homesecuritymain.Login.Activity.Common.SplashScreen;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGrievanceActive;
 import com.example.homesecuritymain.citizen.Model.ModelGrievance;
@@ -43,10 +46,17 @@ public class AdminMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main);
 
         initialize();
-        
+
         object = new CommonClass();
 
         linearLayout.setVisibility(View.GONE);
+
+        imNewGuard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminMainActivity.this,AllGuardAdminActivity.class));
+            }
+        });
 
         ivNotices.setOnClickListener(new View.OnClickListener() {
             @Override

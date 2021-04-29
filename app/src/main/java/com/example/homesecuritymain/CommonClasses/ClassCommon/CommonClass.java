@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-public class CommonClass extends ListActivity {
+public class CommonClass extends DatabaseRefrencesFirebase {
     DatabaseRefrencesFirebase databaseRefrencesFirebase;
 
     public Double StringToDouble(String string) {

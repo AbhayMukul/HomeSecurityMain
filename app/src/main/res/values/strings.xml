@@ -1,11 +1,17 @@
 <resources>
-    <string name="app_name">HomeSecurityMain</string>
+    <string name="app_name">HomeSecurity</string>
 
     <string-array name="categoryGrievance">
         <item>Plumbing</item>
         <item>Carpentary</item>
         <item>Electricity</item>
         <item>Gardening</item>
+    </string-array>
+
+    <string-array name="shift">
+        <item>SELECT SHIFT</item>
+        <item>Morning Shift</item>
+        <item>Night Shift</item>
     </string-array>
 
     <string-array name="Duration">

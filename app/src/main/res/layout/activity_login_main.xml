@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="WELCOME"
-        android:textColor="@color/background_5"
+        android:textStyle="bold"
+        android:textColor="@color/text_color_main_1"
         android:gravity="center"
         android:textSize="32dp"/>
 
@@ -25,21 +26,22 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Btn_LoginActivityMain_CitizenLogin"
-            android:text="CITIZEN"
-            android:background="@color/background_5"/>
+            android:id="@+id/btn_LoginActivityMain_GuardLogin"
+            android:text="GUARD"
+            android:background="@color/background_7"/>
 
         <Button
             android:layout_margin="16dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_LoginActivityMain_GuardLogin"
-            android:text="GUARD"
-            android:background="@color/background_7"/>
+            android:id="@+id/Btn_LoginActivityMain_CitizenLogin"
+            android:text="CITIZEN"
+            android:background="@color/background_5"/>
     </LinearLayout>
 
     <TextView
+        android:textColor="@color/text_color_main_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="please select the type of account"

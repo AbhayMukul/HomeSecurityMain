@@ -15,6 +15,7 @@ import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelGuestList;
 import com.example.homesecuritymain.R;
+import com.example.homesecuritymain.guard.Activity.GuestListVerificationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -67,7 +68,7 @@ public class GuestListOTPVerificationActivity extends AppCompatActivity {
                     object.referenceGuestListCitizen(flat).child(modelGuestList.getCode()).setValue(modelGuestList);
                     finish();
                 } else {
-                    Toast.makeText(object, "The OTP doesnt match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GuestListOTPVerificationActivity.this, "The OTP doesnt match", Toast.LENGTH_SHORT).show();
                 }
             }
         });

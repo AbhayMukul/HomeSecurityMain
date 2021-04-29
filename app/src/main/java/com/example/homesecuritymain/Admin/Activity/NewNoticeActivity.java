@@ -41,7 +41,7 @@ public class NewNoticeActivity extends AppCompatActivity {
 
                 object.referenceAdminNotices().child(key).setValue(noticeModel);
 
-                Toast.makeText(object, "Notice has been posted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewNoticeActivity.this, "Notice has been posted", Toast.LENGTH_SHORT).show();
 
                 finish();
             }
