@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenActivity;
+import com.example.homesecuritymain.Login.Activity.Guard.GuardLoginActivity;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.guard.Activity.GuardMainActivity;
 
@@ -31,7 +32,7 @@ public class LoginActivityMain extends AppCompatActivity {
         btnGuard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivityMain.this, GuardMainActivity.class));
+                startActivity(new Intent(LoginActivityMain.this, GuardLoginActivity.class));
             }
         });
     }

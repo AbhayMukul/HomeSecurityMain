@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.homesecuritymain.Admin.Model.GuardDetailsModel;
 import com.example.homesecuritymain.R;
+import com.example.homesecuritymain.citizen.Activity.SettingActivityCitizen;
 import com.example.homesecuritymain.citizen.Fragment.FragmentCurrentGrievance;
 import com.example.homesecuritymain.citizen.Fragment.FragmentGrievanceAll;
 import com.example.homesecuritymain.citizen.FragmentAdapter.ViewPageAdapterGuestActivity;
@@ -19,6 +21,8 @@ import com.example.homesecuritymain.guard.FragmentAdapter.FragmentAllGuest;
 import com.google.android.material.tabs.TabLayout;
 
 public class GuardMainActivity extends AppCompatActivity {
+    //Model
+    GuardDetailsModel model;
     //XML elements
     ImageView ivOpenLinearLayout, ivSetting, ivNewGuest;
     LinearLayout linearLayout;
@@ -36,6 +40,8 @@ public class GuardMainActivity extends AppCompatActivity {
 
         setTabLayout();
 
+        model = (GuardDetailsModel) getIntent().getSerializableExtra("modelGuardAll");
+
         linearLayout.setVisibility(View.GONE);
 
         ivOpenLinearLayout.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +53,13 @@ public class GuardMainActivity extends AppCompatActivity {
                 else {
                     linearLayout.setVisibility(View.GONE);
                 }
+            }
+        });
+
+        ivSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GuardMainActivity.this, GuardSettingActivity.class).putExtra("modelGuardAll",model));
             }
         });
 

@@ -68,6 +68,15 @@ public class AllGuardAdminActivity extends AppCompatActivity {
                 adapter.tvName.setText(model.getName());
                 adapter.tvID.setText(model.getID());
 
+                adapter.cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(AllGuardAdminActivity.this,GuardDescriptionActivity.class);
+                        intent.putExtra("guardDetails",model);
+                        startActivity(intent);
+                    }
+                });
+
                 if(model.getACTIVE()){
                     adapter.tvActive.setBackgroundColor(getResources().getColor(R.color.Active));
                 }else {

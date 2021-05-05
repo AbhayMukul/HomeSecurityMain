@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homesecuritymain.R;
@@ -12,6 +13,7 @@ import org.w3c.dom.Text;
 
 public class AdapterGuardAllAdmin extends RecyclerView.ViewHolder {
     public TextView tvID,tvName,tvPhone,tvActive;
+    public CardView cardView;
 
     public AdapterGuardAllAdmin(@NonNull View itemView) {
         super(itemView);
@@ -20,5 +22,7 @@ public class AdapterGuardAllAdmin extends RecyclerView.ViewHolder {
         tvID = itemView.findViewById(R.id.Tv_Lr_AllGuardAdminActivity_ID);
         tvName = itemView.findViewById(R.id.Tv_Lr_AllGuardAdminActivity_Name);
         tvPhone = itemView.findViewById(R.id.Tv_Lr_AllGuardAdminActivity_Phone);
+
+        cardView = itemView.findViewById(R.id.Cv_Lr_AllGuardAdminActivity);
     }
 }

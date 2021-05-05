@@ -1,6 +1,8 @@
 package com.example.homesecuritymain.Admin.Model;
 
-public class GuardDetailsModel {
+import java.io.Serializable;
+
+public class GuardDetailsModel implements Serializable {
     String Name;
     String Phone;
     String Password;

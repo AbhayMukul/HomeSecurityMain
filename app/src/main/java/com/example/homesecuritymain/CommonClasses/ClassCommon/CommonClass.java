@@ -38,6 +38,18 @@ public class CommonClass extends DatabaseRefrencesFirebase {
         }
     }
 
+    //------------------------------------------------------------------------------------GUARDLOGIN
+    public DatabaseReference referenceGuardLoginName(String ID){
+        return mUserDatabaseGuardLogin.child(ID).child("name");
+    }
+
+    public DatabaseReference referenceGuardLoginAddress(String ID){
+        return mUserDatabaseGuardLogin.child(ID).child("address");
+    }
+
+    public DatabaseReference referenceGuardLoginPassword(String ID){
+        return mUserDatabaseGuardLogin.child(ID).child("password");
+    }
     //-----------------------------------------------------------------------------------------ADMIN
     public DatabaseReference referenceAdminAccountName(String Phone){
         return databaseRefrencesFirebase.mUserDatabaseAdmin.child("Accounts").child("Name");

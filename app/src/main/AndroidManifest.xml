@@ -15,23 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".Admin.Activity.NewGuardCreationActivity"></activity>
+        <activity android:name=".guard.Activity.GuardSettingActivity"></activity>
+        <activity android:name=".Login.Activity.Guard.InValidLoginGuardActivity" />
+        <activity android:name=".Login.Activity.Guard.NewGuardActivitySplashScreenActivity" />
+        <activity android:name=".Login.Activity.Guard.NewGuardActivity" />
+        <activity android:name=".Login.Activity.Guard.GuardLoginActivity" />
+        <activity android:name=".Admin.Activity.GuardDescriptionActivity" />
+        <activity android:name=".Admin.Activity.NewGuardCreationActivity" />
         <activity android:name=".Admin.Activity.AllGuardAdminActivity" />
         <activity android:name=".Admin.Activity.NoticeReadActivity" />
         <activity android:name=".Admin.Activity.NewNoticeActivity" />
         <activity android:name=".Admin.Activity.NoticeAdminActivity" />
-        <activity android:name=".Admin.Activity.AdminMainActivity">
+        <activity android:name=".Admin.Activity.AdminMainActivity" />
+        <activity android:name=".Login.Activity.Admin.AdminLoginActivity" />
+        <activity android:name=".citizen.Activity.CitizenMapAccountActivity" />
+        <activity android:name=".Login.Activity.Citizen.LoginPreExistingAccountSplashScreenActivity" />
+        <activity android:name=".Login.Activity.Citizen.WelcomeLoginActivity" />
+        <activity android:name=".Login.Activity.Common.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.Activity.Admin.AdminLoginActivity" />
-        <activity android:name=".citizen.Activity.CitizenMapAccountActivity" />
-        <activity android:name=".Login.Activity.Citizen.LoginPreExistingAccountSplashScreenActivity" />
-        <activity android:name=".Login.Activity.Citizen.WelcomeLoginActivity" />
-        <activity android:name=".Login.Activity.Common.SplashScreen" />
         <activity android:name=".TrailActivity" />
         <activity android:name=".Login.Activity.Citizen.LoginCitizenPreExistingAccountActivity" />
         <activity android:name=".Login.Activity.Citizen.CreateNewAccountLoginActivity" />

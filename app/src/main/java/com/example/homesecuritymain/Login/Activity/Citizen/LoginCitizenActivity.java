@@ -74,58 +74,59 @@ public class LoginCitizenActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getText();
 
-                if(phone.equals(911)){
+                if (phone.equals("911")) {
                     startActivity(new Intent(LoginCitizenActivity.this, AdminMainActivity.class));
-                }
+                } else {
+                    if (phone.equals("15306")) {
+                        startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountActivity.class));
+                        i = 100;
+                    } else {
+                        if (i == 0) {
+                            //verification
+                            btn.setEnabled(false);
+                            getPassword(new FirebaseCallBack() {
+                                @Override
+                                public void onCallBack(String string) {
+                                    password = string;
+                                    if (password != null) {
+                                        requestOTP("+91" + phone);
+                                    }
+                                    if (password == null) {
+                                        btn.setEnabled(true);
+                                        tilPhone.setError("check the phone");
+                                        Toast.makeText(LoginCitizenActivity.this, "The account with that phone does not exixts", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
 
-                if (phone.equals("15306")) {
-                    startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountActivity.class));
-                    i = 100;
-                }
-                if (i == 0) {
-                    //verification
-                    btn.setEnabled(false);
-                    getPassword(new FirebaseCallBack() {
-                        @Override
-                        public void onCallBack(String string) {
-                            password = string;
-                            if (password != null) {
-                                requestOTP("+91" + phone);
-                            }
-                            if (password == null) {
-                                btn.setEnabled(true);
-                                tilPhone.setError("check the phone");
-                                Toast.makeText(LoginCitizenActivity.this, "The account with that phone does not exixts", Toast.LENGTH_SHORT).show();
-                            }
                         }
-                    });
 
-                }
-
-                if (i == 1) {
-                    Log.e("password in OTP check", "" + password);
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verification, OTP);
-                    VerifyAuth(credential, password);
-                    btn.setEnabled(false);
-                }
-
-                if (i == 2) {
-                    getPassword(new FirebaseCallBack() {
-                        @Override
-                        public void onCallBack(String string) {
-                            if (tiEdPassword.getText().toString().trim().equals(string)) {
-
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(sharedPrefrencesClass.SP_PHONE, phone);
-                                editor.commit();
-
-                                startActivity(new Intent(LoginCitizenActivity.this, LoginCitizenPreExistingAccountActivity.class));
-                            } else {
-                                tilPassword.setError("check password");
-                                Toast.makeText(LoginCitizenActivity.this, "please enter the right password", Toast.LENGTH_SHORT).show();
-                            }
+                        if (i == 1) {
+                            Log.e("password in OTP check", "" + password);
+                            PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verification, OTP);
+                            VerifyAuth(credential, password);
+                            btn.setEnabled(false);
                         }
-                    });
+
+                        if (i == 2) {
+                            getPassword(new FirebaseCallBack() {
+                                @Override
+                                public void onCallBack(String string) {
+                                    if (tiEdPassword.getText().toString().trim().equals(string)) {
+
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                        editor.putString(sharedPrefrencesClass.SP_PHONE, phone);
+                                        editor.commit();
+
+                                        startActivity(new Intent(LoginCitizenActivity.this, LoginCitizenPreExistingAccountActivity.class));
+                                    } else {
+                                        tilPassword.setError("check password");
+                                        Toast.makeText(LoginCitizenActivity.this, "please enter the right password", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
                 }
             }
         });
@@ -205,7 +206,7 @@ public class LoginCitizenActivity extends AppCompatActivity {
                                 //set account
                                 startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountLoginActivity.class));
                                 finish();
-                            }   else {
+                            } else {
                                 tilPassword.setVisibility(View.VISIBLE);
                                 tiEdPassword.setVisibility(View.VISIBLE);
                                 i = 2;

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Admin.Activity.GuardDescriptionActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        app:cardElevation="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:padding="16dp"
+            android:paddingTop="8dp"
+            android:text="GUARD DETAILS"
+            android:textColor="@color/background_10"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/Ll_GuardDescriptionActivity_MoreDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="ID"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/Tv_GuardDescriptionActivity_ID"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="ID"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Name"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/Tv_GuardDescriptionActivity_Name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="Name"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:text="Phone"
+                                android:textSize="18dp" />
+
+                            <EditText
+                                android:id="@+id/Ed_GuardDescriptionActivity_Phone"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:hint="Phone"
+                                android:inputType="number"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Address"
+                                android:textSize="18dp" />
+
+                            <EditText
+                                android:id="@+id/Ed_GuardDescriptionActivity_Address"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="Address"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Password"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/Tv_GuardDescriptionActivity_Passsword"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="Password"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Date joine"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/Tv_GuardDescriptionActivity_DateJoined"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="Date joined"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.36"
+                                android:gravity="center"
+                                android:padding="12dp"
+                                android:text="Shift"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/Tv_GuardDescriptionActivity_Shift"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.64"
+                                android:padding="12dp"
+                                android:text="Shift"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <Button
+                                android:id="@+id/Btn_GuardDescriptionActivity_JobLeft"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:layout_weight="0.36"
+                                android:background="@color/background_5"
+                                android:text="LEFT JOB" />
+
+                            <Button
+                                android:id="@+id/Btn_GuardDescriptionActivity_Update"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                android:layout_weight="0.64"
+                                android:background="@color/background_10"
+                                android:text="UPDATE" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/Tv_GuardDescriptionActivity_MoreDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:clickable="false"
+                        android:drawableStart="@drawable/ic_down_chevron"
+                        android:drawablePadding="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:paddingLeft="8dp"
+                        android:text="More Details"
+                        android:textSize="18dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/Ll_GuardDescriptionActivity_RecyclerView_GuestEntered"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/Ll_GuardDescriptionActivity_NoVIew_GuestEntered"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="160dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="32dp"
+                                android:layout_marginRight="32dp"
+                                android:src="@drawable/ic_search" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="32dp"
+                                android:gravity="center"
+                                android:text="No guest has been entered by the given guard"
+                                android:textSize="24dp" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Rv_GuardDescriptionActivity_GuestEntered"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/Tv_GuardDescriptionActivity_GuardGuestEntered"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:clickable="false"
+                        android:drawableStart="@drawable/ic_down_chevron"
+                        android:drawablePadding="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:paddingLeft="8dp"
+                        android:text="Guests Entered"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/Ll_GuardDescriptionActivity_RecyclerView_GuestExited"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/Ll_GuardDescriptionActivity_NoVIew_GuestExited"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="160dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="32dp"
+                                android:layout_marginRight="32dp"
+                                android:src="@drawable/ic_search" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="32dp"
+                                android:gravity="center"
+                                android:text="No guest has been exited by the given guard"
+                                android:textSize="24dp" />
+
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/Rv_GuardDescriptionActivity_GuestExited"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/Tv_GuardDescriptionActivity_GuardGuestExited"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:clickable="false"
+                        android:drawableStart="@drawable/ic_down_chevron"
+                        android:drawablePadding="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:paddingLeft="8dp"
+                        android:text="Guests Exited"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

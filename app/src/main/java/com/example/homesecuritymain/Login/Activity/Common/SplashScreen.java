@@ -20,15 +20,23 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.Admin.Model.GuardDetailsModel;
 import com.example.homesecuritymain.CommonClasses.BroadcastReciever.MyLocationService;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
+import com.example.homesecuritymain.Login.Activity.Guard.InValidLoginGuardActivity;
 import com.example.homesecuritymain.R;
 import com.example.homesecuritymain.citizen.Activity.CitizenMainActivity;
+import com.example.homesecuritymain.guard.Activity.GuardMainActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -43,24 +51,25 @@ public class SplashScreen extends AppCompatActivity {
 
     LinearLayout linearLayout;
 
-    String accountType;
+    String accountType, key;
     LocationRequest locationRequest;
+    Animation splashTopDown;
+    CommonClass object;
     //google API for location services
     private FusedLocationProviderClient fusedLocationProviderClient;
-
-    Animation splashTopDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        object = new CommonClass();
+
         sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         accountType = sharedPreferences.getString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "");
 
-
         linearLayout = findViewById(R.id.Ll_SplashScreen);
-        splashTopDown = AnimationUtils.loadAnimation(SplashScreen.this,R.anim.animation_top_down);
+        splashTopDown = AnimationUtils.loadAnimation(SplashScreen.this, R.anim.animation_top_down);
 
         linearLayout.setAnimation(splashTopDown);
 
@@ -80,6 +89,25 @@ public class SplashScreen extends AppCompatActivity {
                 } else if (accountType.equals("")) {
                     startActivity(new Intent(SplashScreen.this, LoginActivityMain.class));
                     finish();
+                } else if (accountType.equals("guard")) {
+                    key = sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID,"");
+                    object.mUserDatabaseGuardLogin.child(key).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            GuardDetailsModel model = (GuardDetailsModel) snapshot.getValue(GuardDetailsModel.class);
+
+                            if(model.getACTIVE() && new DateAndTimeClass().ShiftTimings(model.getShift())){
+                                startActivity(new Intent(SplashScreen.this, GuardMainActivity.class).putExtra("modelGuardAll",model));
+                            }else {
+                                startActivity(new Intent(SplashScreen.this, InValidLoginGuardActivity.class).putExtra("active",model.getACTIVE()));
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
         }, 2500);

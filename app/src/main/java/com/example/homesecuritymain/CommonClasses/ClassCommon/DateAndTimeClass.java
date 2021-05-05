@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateAndTimeClass {
-    String time,d;
+    String time, d;
 
     public DateAndTimeClass() {
         Date date = new Date();
@@ -13,13 +13,27 @@ public class DateAndTimeClass {
         time = (String) android.text.format.DateFormat.format("kk:mm:ss", date);
     }
 
-    public Date StringToDate(String string){
+    public Date StringToDate(String string) {
         SimpleDateFormat df = new SimpleDateFormat("kk:mm:ss");
         try {
             return df.parse(string);
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public Boolean ShiftTimings(String shitf) {
+        if (shitf.equals("Night Shift")){
+            if(DateCompare("20:00:00")){
+                return true;
+            }else if (!DateCompare("08:00:00")){
+                return true;
+            }else {
+                return false;
+            }
+        }else {
+            return DateCompare("08:00:00") && !DateCompare("20:00:00");
         }
     }
 
@@ -39,11 +53,11 @@ public class DateAndTimeClass {
         return dateCurrent.after(dateUpdate);
     }
 
-    public String getCurrentTime(){
+    public String getCurrentTime() {
         return time;
     }
 
-    public String getCurrentDate(){
+    public String getCurrentDate() {
         return d;
     }
 
