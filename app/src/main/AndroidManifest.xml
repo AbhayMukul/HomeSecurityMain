@@ -9,14 +9,24 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
+        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.DarkMode">
-        <activity android:name=".guard.Activity.GuardSettingActivity"></activity>
-        <activity android:name=".Login.Activity.Guard.InValidLoginGuardActivity" />
+        <activity android:name=".Login.Activity.Citizen.FirstTimeLogin.CitizenApplicationDescriptionToFirstTimeUserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".guard.Activity.GuardSettingActivity" />
+        <activity
+            android:name=".Login.Activity.Guard.InValidLoginGuardActivity"
+            android:launchMode="singleInstance" />
         <activity android:name=".Login.Activity.Guard.NewGuardActivitySplashScreenActivity" />
         <activity android:name=".Login.Activity.Guard.NewGuardActivity" />
         <activity android:name=".Login.Activity.Guard.GuardLoginActivity" />
@@ -29,18 +39,13 @@
         <activity android:name=".Admin.Activity.AdminMainActivity" />
         <activity android:name=".Login.Activity.Admin.AdminLoginActivity" />
         <activity android:name=".citizen.Activity.CitizenMapAccountActivity" />
-        <activity android:name=".Login.Activity.Citizen.LoginPreExistingAccountSplashScreenActivity" />
-        <activity android:name=".Login.Activity.Citizen.WelcomeLoginActivity" />
+        <activity android:name=".Login.Activity.Citizen.PreviouslyLoggedIn.LoginPreExistingAccountSplashScreenActivity" />
+        <activity android:name=".Login.Activity.Citizen.FirstTimeLogin.WelcomeLoginActivity" />
         <activity android:name=".Login.Activity.Common.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TrailActivity" />
-        <activity android:name=".Login.Activity.Citizen.LoginCitizenPreExistingAccountActivity" />
-        <activity android:name=".Login.Activity.Citizen.CreateNewAccountLoginActivity" />
+        <activity android:name=".Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity" />
+        <activity android:name=".Login.Activity.Citizen.FirstTimeLogin.CreateNewAccountLoginActivity" />
         <activity android:name=".Login.Activity.NewAccount.CreateNewAccountActivity" />
         <activity android:name=".Login.Activity.Citizen.LoginCitizenActivity" />
 

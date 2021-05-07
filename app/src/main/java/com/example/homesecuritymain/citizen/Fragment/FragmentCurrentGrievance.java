@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionInflater;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
@@ -33,9 +34,9 @@ public class FragmentCurrentGrievance extends Fragment {
     FirebaseRecyclerOptions<ModelGrievance> option;
     FirebaseRecyclerAdapter<ModelGrievance, AdapterGrievanceActive> firebaseRecyclerAdapter;
 
-    DatabaseReference mUserDatabaseGrievance,mUserDatabaseCitizen;
+    DatabaseReference mUserDatabaseGrievance, mUserDatabaseCitizen;
 
-    public static FragmentCurrentGrievance getInstance(){
+    public static FragmentCurrentGrievance getInstance() {
         FragmentCurrentGrievance fragmentCurrentGrievance = new FragmentCurrentGrievance();
         return fragmentCurrentGrievance;
     }
@@ -79,11 +80,11 @@ public class FragmentCurrentGrievance extends Fragment {
                 adapter.tvTime.setText(model.getPreferredTime());
                 adapter.tvDescription.setText(model.getGrievance());
 
-                if(model.getAssignedHelpName().equals("")) {
+                if (model.getAssignedHelpName().equals("")) {
                     adapter.tvName.setText("yet to be assigned");
                     adapter.btnCall.setVisibility(View.GONE);
                     adapter.btnDone.setVisibility(View.GONE);
-                }else {
+                } else {
                     adapter.tvName.setText(model.getAssignedHelpName());
                     adapter.btnDone.setVisibility(View.VISIBLE);
                     adapter.btnCall.setText(model.getAssignedHelpNumber());
@@ -92,10 +93,10 @@ public class FragmentCurrentGrievance extends Fragment {
                 adapter.tvMoreDetails.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(adapter.linearLayout.getVisibility() == View.GONE){
+                        if (adapter.linearLayout.getVisibility() == View.GONE) {
                             adapter.tvMoreDetails.setText("Hide Details");
                             adapter.linearLayout.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             adapter.tvMoreDetails.setText("More Details");
                             adapter.linearLayout.setVisibility(View.GONE);
                         }

@@ -10,15 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.Activity.Citizen.CreateNewAccountLoginActivity;
-import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenActivity;
-import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenPreExistingAccountActivity;
-import com.example.homesecuritymain.Login.Activity.NewAccount.CreateNewAccountActivity;
+import com.example.homesecuritymain.Login.Activity.Citizen.FirstTimeLogin.CreateNewAccountLoginActivity;
+import com.example.homesecuritymain.Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity;
 import com.example.homesecuritymain.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

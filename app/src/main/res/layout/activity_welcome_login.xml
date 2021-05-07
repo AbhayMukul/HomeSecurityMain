@@ -4,16 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login.Activity.Citizen.WelcomeLoginActivity">
+    tools:context=".Login.Activity.Citizen.FirstTimeLogin.WelcomeLoginActivity">
 
-    <TextView
-        android:textStyle="bold"
-        android:textColor="@color/background_5"
-        android:layout_marginTop="240dp"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="240dp"
         android:layout_height="wrap_content"
-        android:text="WELCOME"
-        android:textSize="36dp"
-        android:gravity="center"/>
+        android:orientation="vertical">
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/background_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WELCOME"
+            android:textSize="36dp"
+            android:gravity="center"/>
 
+        <TextView
+            android:textStyle="bold"
+            android:textColor="@color/background_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="please give us a while to set your account"
+            android:gravity="center"/>
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:indeterminateTint="@color/background_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="120dp"/>
 </RelativeLayout>

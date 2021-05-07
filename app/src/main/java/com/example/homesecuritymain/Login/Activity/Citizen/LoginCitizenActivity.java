@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.homesecuritymain.Admin.Activity.AdminMainActivity;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
+import com.example.homesecuritymain.Login.Activity.Citizen.FirstTimeLogin.CreateNewAccountLoginActivity;
+import com.example.homesecuritymain.Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity;
 import com.example.homesecuritymain.Login.Activity.NewAccount.CreateNewAccountActivity;
 import com.example.homesecuritymain.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -204,7 +206,7 @@ public class LoginCitizenActivity extends AppCompatActivity {
                                 editor.commit();
 
                                 //set account
-                                startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountLoginActivity.class));
+                                startActivity(new Intent(LoginCitizenActivity.this, CreateNewAccountLoginActivity.class).putExtra("phone",tiEdPhone.getText().toString().trim()));
                                 finish();
                             } else {
                                 tilPassword.setVisibility(View.VISIBLE);

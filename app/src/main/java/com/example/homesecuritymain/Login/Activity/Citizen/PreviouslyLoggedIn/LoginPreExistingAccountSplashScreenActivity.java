@@ -1,4 +1,4 @@
-package com.example.homesecuritymain.Login.Activity.Citizen;
+package com.example.homesecuritymain.Login.Activity.Citizen.PreviouslyLoggedIn;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

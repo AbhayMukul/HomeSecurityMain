@@ -27,7 +27,7 @@ public class NewGuardActivitySplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_guard_splash_screen);
 
-        model = (GuardDetailsModel) getIntent().getSerializableExtra("modelGuard");
+        model = (GuardDetailsModel) getIntent().getSerializableExtra("modelGuardAll");
 
         initialize();
 

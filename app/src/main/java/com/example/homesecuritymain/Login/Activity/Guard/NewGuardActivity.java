@@ -56,7 +56,7 @@ public class NewGuardActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     GuardDetailsModel model = snapshot.getValue(GuardDetailsModel.class);
                                     Intent intent = new Intent(NewGuardActivity.this,NewGuardActivitySplashScreenActivity.class);
-                                    intent.putExtra("modelGuard",model);
+                                    intent.putExtra("modelGuardAll",model);
                                     startActivity(intent);
                                     finish();
                                 }

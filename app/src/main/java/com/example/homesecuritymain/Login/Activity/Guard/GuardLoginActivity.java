@@ -4,20 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.homesecuritymain.Admin.Model.GuardDetailsModel;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
-import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
-import com.example.homesecuritymain.Login.Activity.Citizen.CreateNewAccountLoginActivity;
-import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenActivity;
 import com.example.homesecuritymain.R;
-import com.example.homesecuritymain.guard.Activity.GuardMainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -97,12 +92,12 @@ public class GuardLoginActivity extends AppCompatActivity {
                 }else if(i == 2){
                     //get Password and check
                     password = tiEdPassword.getText().toString().trim();
-                    object.mUserDatabaseGuardLogin.child(id).child("password").addValueEventListener(new ValueEventListener() {
+                    object.mUserDatabaseGuardLogin.child(id).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String passwordDatabase = snapshot.getValue().toString().trim();
-                            if(passwordDatabase.equals(password)){
-                                startActivity(new Intent(GuardLoginActivity.this, GuardMainActivity.class));
+                            GuardDetailsModel model = (GuardDetailsModel) snapshot.getValue(GuardDetailsModel.class);
+                            if(model.getPassword().equals(password)){
+                                startActivity(new Intent(GuardLoginActivity.this, NewGuardActivitySplashScreenActivity.class).putExtra("modelGuardAll",model));
                             }
                         }
 
@@ -136,6 +131,8 @@ public class GuardLoginActivity extends AppCompatActivity {
                                 //old account
                                 tiEdPassword.setVisibility(View.VISIBLE);
                                 tilPassword.setVisibility(View.VISIBLE);
+                                btn.setText("LOGIN");
+                                btn.setEnabled(true);
                                 i = 2;
                             }
                         }

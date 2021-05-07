@@ -27,6 +27,7 @@ public class InValidLoginGuardActivity extends AppCompatActivity {
         }else {
             linearLayoutOutOfTime.setVisibility(View.GONE);
         }
+
     }
 
     private void initialize() {

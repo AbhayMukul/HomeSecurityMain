@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.Login.Activity.Common.LoginActivityMain;
-import com.example.homesecuritymain.Login.Activity.Citizen.LoginCitizenPreExistingAccountActivity;
+import com.example.homesecuritymain.Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity;
 import com.example.homesecuritymain.R;
 
 public class SettingActivityCitizen extends AppCompatActivity {
