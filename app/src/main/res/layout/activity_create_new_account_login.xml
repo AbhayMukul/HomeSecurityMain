@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_4"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Login.Activity.Citizen.FirstTimeLogin.CreateNewAccountLoginActivity">
@@ -81,7 +82,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Please enter the psasword for your account"
-        android:textColor="@color/background_5"
+        android:textColor="@color/text_color_main_1"
+        android:textStyle="bold"
         android:gravity="center"/>
 
 </LinearLayout>

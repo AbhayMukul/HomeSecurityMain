@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_4"
     android:layout_height="match_parent"
     tools:context=".citizen.Activity.FamilyActivity">
 
@@ -11,6 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/background_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -62,14 +64,13 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16dp"
-        android:text="new family member"
         android:id="@+id/Tv_FamilyActivity_AddNewFamily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="32dp"
-        android:drawableRight="@drawable/ic_baseline_chevron_right_white_24"
+        android:drawableRight="@drawable/ic_add_group"
         android:background="@drawable/background_round_corner_rectangle"
         android:backgroundTint="@color/background_3"
         android:padding="18dp"/>

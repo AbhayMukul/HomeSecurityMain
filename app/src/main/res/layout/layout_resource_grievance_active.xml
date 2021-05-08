@@ -101,7 +101,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_round_corner_rectangle"
-                android:backgroundTint="@color/background_8"
+                android:backgroundTint="@color/background_main_2"
                 android:gravity="center"
                 android:paddingLeft="16dp"
                 android:text="DONE" />
@@ -130,7 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Remove"
-                    android:textColor="@color/background_5"
+                    android:textColor="@color/text_color_main_1"
                     android:textSize="16dp" />
 
                 <ImageView
@@ -157,6 +157,7 @@
                     android:text="Grievance Description" />
 
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/Tv_Lr_GrievanceActive_Description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -186,7 +187,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/background_round_corner_rectangle"
-                    android:backgroundTint="@color/background_5"
+                    android:backgroundTint="@color/text_color_main_1"
                     android:drawableStart="@drawable/ic_baseline_call_24"
                     android:gravity="center"
                     android:paddingLeft="16dp"

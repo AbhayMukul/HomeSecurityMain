@@ -8,21 +8,22 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_1">#F0EEEE</color>
+    <color name="background_1">#51459e</color>
     <color name="backgroud_2">#DA5180</color>
-    <color name="background_3">#ff4040</color>
-    <color name="background_4">#FF9800</color>
+    <color name="background_3">#3ed2bd</color>
+    <color name="background_4">#e5e9fa</color>
 
-    <color name="background_5">#ff4040</color>
-    <color name="background_6">#ffffff</color>
+    <color name="background_5">#F5F5F5</color>
+    <color name="background_6">#8d82cf</color>
     <color name="background_7">#98b1e4</color>
     <color name="background_8">#8d74b2</color>
     <color name="background_10">#9DBAD5</color>
     <color name="main_background">#6C3A91</color>
 
-    <color name="background_main_1">#FAA3A3</color>
-    <color name="background_main_2">#FBB8AC</color>
-    <color name="background_main_3">#FED8B0</color>
+    <color name="background_main_1">#51459e</color>
+    <color name="background_main_2">#b4b2f4</color>
+    <color name="background_main_3">#8d82cf</color>
+    <color name="background_main_4">#3ed2bd</color>
     <color name="text_color_main_1">#ff4040</color>
     <color name="text_color_main_2">#442C2E</color>
     <color name="Active">#64DD17</color>

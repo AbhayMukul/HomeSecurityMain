@@ -52,7 +52,7 @@ public class WelcomeLoginActivity extends AppCompatActivity {
                         editor.putBoolean(sharedPrefrencesClass.SP_LOGGEDIN, true);
                         editor.putString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "citizen");
                         editor.putString(sharedPrefrencesClass.SP_NAME, model.getName());
-                        editor.putString(sharedPrefrencesClass.SP_PHONE, phone);
+                        editor.putString(sharedPrefrencesClass.SP_PHONE, model.getPhone());
                         editor.putBoolean(sharedPrefrencesClass.SP_ADMIN, model.getADMIN());
                         editor.putString(sharedPrefrencesClass.SP_FLAT, model.getFlat());
                         editor.commit();

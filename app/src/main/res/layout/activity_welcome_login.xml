@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".Login.Activity.Citizen.FirstTimeLogin.WelcomeLoginActivity">
 
     <LinearLayout
@@ -13,7 +14,7 @@
         android:orientation="vertical">
         <TextView
             android:textStyle="bold"
-            android:textColor="@color/background_5"
+            android:textColor="@color/background_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="WELCOME"
@@ -22,7 +23,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:textColor="@color/background_5"
+            android:textColor="@color/text_color_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="please give us a while to set your account"
@@ -31,7 +32,7 @@
 
 
     <ProgressBar
-        android:indeterminateTint="@color/background_5"
+        android:indeterminateTint="@color/background_main_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

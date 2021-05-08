@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".Login.Activity.Citizen.PreviouslyLoggedIn.LoginPreExistingAccountSplashScreenActivity">
 
     <LinearLayout
@@ -15,7 +16,7 @@
         <TextView
             android:textSize="48dp"
             android:text="Hi,User"
-            android:textColor="@color/background_5"
+            android:textColor="@color/background_main_1"
             android:gravity="center"
             android:id="@+id/Tv_LoginPreExistingAccountSplashScreenActivity_Name"
             android:layout_width="match_parent"
@@ -23,13 +24,14 @@
 
         <TextView
             android:gravity="center"
-            android:textColor="@color/background_5"
+            android:textColor="@color/text_color_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Please give us a few seconds to fetch your account details" />
     </LinearLayout>
 
     <ProgressBar
+        android:indeterminateTint="@color/background_main_1"
         android:progressTint="@color/purple_500"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

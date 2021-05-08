@@ -51,10 +51,6 @@ public class CitizenMainActivity extends AppCompatActivity {
         name = sharedPreferences.getString(sharedPrefrencesClass.SP_NAME, "");
         tvName.setText(name);
 
-        Toast.makeText(this, "flat :- " + sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, ""), Toast.LENGTH_SHORT).show();
-
-        Log.e("name", name);
-
         //set RecyclerView
         setData();
         setAdapter();

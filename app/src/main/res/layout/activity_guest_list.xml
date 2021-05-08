@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".citizen.Activity.GuestListActivity">
 
     <LinearLayout
@@ -12,6 +13,7 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/background_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"

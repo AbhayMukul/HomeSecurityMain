@@ -83,7 +83,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="8dp"
                 android:text="More Details"
-                android:textColor="@color/background_5"
+                android:textColor="@color/text_color_main_1"
                 android:textSize="16dp" />
 
         </LinearLayout>

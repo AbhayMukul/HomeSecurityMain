@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".citizen.Activity.NewGrievanceActivity">
 
     <LinearLayout
@@ -11,14 +12,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/background_main_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:text="New Grievance"
-            android:textColor="@color/background_5"
-            android:textSize="32dp" />
+            android:padding="8dp"
+            app:cardElevation="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="New Grievance"
+                android:textColor="@color/background_5"
+                android:textSize="32dp" />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -141,7 +150,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Please enter the above details to register a grievance to allow our team to handle your issues as soon as possible"
-            android:textColor="@color/background_5" />
+            android:textColor="@color/text_color_main_1" />
     </LinearLayout>
 
     <Button
@@ -153,7 +162,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/background_round_corner_rectangle"
-        android:backgroundTint="@color/background_5"
+        android:backgroundTint="@color/background_main_3"
         android:text="DONE"
         android:textColor="@color/white" />
 

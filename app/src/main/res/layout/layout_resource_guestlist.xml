@@ -21,10 +21,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Name"
-                android:textColor="@color/background_5"
+                android:textColor="@color/background_main_3"
                 android:textSize="24dp" />
 
             <TextView
+                android:textColor="@color/text_color_main_1"
                 android:id="@+id/Tv_Lr_GuestListActivity_Code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@color/background_4"
+                android:background="@color/background_main_2"
                 android:text="Number" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

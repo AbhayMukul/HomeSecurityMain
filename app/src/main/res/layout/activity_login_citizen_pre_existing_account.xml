@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     android:orientation="vertical"
     tools:context=".Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity">
 
     <androidx.cardview.widget.CardView
+        android:backgroundTint="@color/background_main_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="8dp"

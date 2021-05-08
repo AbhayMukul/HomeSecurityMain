@@ -5,10 +5,13 @@
     android:id="@+id/Lr_Ll_CitizenMainActivty"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:id="@+id/Cv_Lr_CitizenMainActivty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +20,6 @@
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
-        app:cardUseCompatPadding="true"
         app:strokeWidth="1dp">
 
         <LinearLayout
@@ -28,20 +30,31 @@
             android:padding="8dp"
             android:weightSum="1">
 
-            <ImageView
-                android:id="@+id/Lr_Iv_CitizenMainActivity_logo"
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0.1"
-                android:src="@drawable/ic_guest_list" />
+                app:cardElevation="8dp"
+                android:backgroundTint="@color/background_3"
+                android:layout_weight="0.15">
+
+                <ImageView
+                    android:padding="4dp"
+                    android:id="@+id/Lr_Iv_CitizenMainActivity_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_guest_list" />
+
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
+                android:layout_marginLeft="8dp"
                 android:id="@+id/Lr_Tv_CitizenMainActivity_Name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="0.9"
+                android:layout_weight="0.85"
                 android:drawableRight="@drawable/ic_baseline_chevron_right_24"
                 android:gravity="left"
                 android:text="ACTIVE GUEST"

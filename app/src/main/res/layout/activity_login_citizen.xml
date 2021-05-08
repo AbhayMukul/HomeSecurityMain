@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".Login.Activity.Citizen.LoginCitizenActivity">
 
     <androidx.cardview.widget.CardView
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="LOGIN DETAILS"
-                android:textColor="@color/main_background"
+                android:textColor="@color/background_main_1"
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
@@ -102,7 +103,7 @@
                     android:id="@+id/Btn_LoginCitizenActivity_Next"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/purple_200"
+                    android:background="@color/background_main_3"
                     android:text="NEXT" />
             </LinearLayout>
 

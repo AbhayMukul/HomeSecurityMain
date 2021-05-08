@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".citizen.Activity.AddNewFamilyActivity">
 
     <androidx.cardview.widget.CardView
+        android:backgroundTint="@color/background_main_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -73,7 +75,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@color/background_5"
+                    android:background="@color/background_main_2"
                     android:text="Verify" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

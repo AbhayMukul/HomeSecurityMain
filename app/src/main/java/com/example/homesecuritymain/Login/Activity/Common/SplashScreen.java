@@ -90,17 +90,17 @@ public class SplashScreen extends AppCompatActivity {
                     startActivity(new Intent(SplashScreen.this, LoginActivityMain.class));
                     finish();
                 } else if (accountType.equals("guard")) {
-                    key = sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID,"");
+                    key = sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID, "");
                     object.mUserDatabaseGuardLogin.child(key).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             GuardDetailsModel model = (GuardDetailsModel) snapshot.getValue(GuardDetailsModel.class);
 
-                            if(model.getACTIVE() && new DateAndTimeClass().ShiftTimings(model.getShift())){
-                                startActivity(new Intent(SplashScreen.this, GuardMainActivity.class).putExtra("modelGuardAll",model));
+                            if (model.getACTIVE() && new DateAndTimeClass().ShiftTimings(model.getShift())) {
+                                startActivity(new Intent(SplashScreen.this, GuardMainActivity.class).putExtra("modelGuardAll", model));
                                 finish();
-                            }else {
-                                Intent intent = new Intent(SplashScreen.this, InValidLoginGuardActivity.class).putExtra("active",model.getACTIVE());
+                            } else {
+                                Intent intent = new Intent(SplashScreen.this, InValidLoginGuardActivity.class).putExtra("active", model.getACTIVE());
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

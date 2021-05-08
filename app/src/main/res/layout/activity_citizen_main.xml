@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".citizen.Activity.CitizenMainActivity">
 
     <ScrollView
+        android:scrollY="0dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,35 +17,57 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="8dp"
-                app:strokeWidth="8dp">
-
                 <LinearLayout
-                    android:paddingTop="8dp"
+                    android:paddingTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/background_main_citizen"
                     android:orientation="vertical"
+                    android:paddingBottom="16dp"
                     android:weightSum="1">
+
+                    <RelativeLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_home" />
+
+                        <ImageView
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/Iv_CitizenMainActivity_Setting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:paddingTop="8dp"
+                            android:paddingRight="16dp"
+                            android:src="@drawable/ic_baseline_settings_24" />
+
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="1">
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.8">
+                            android:layout_marginTop="12dp"
+                            android:gravity="center">
 
                             <TextView
-                                android:layout_marginLeft="4dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                 android:text="Hi, "
+                                android:textColor="@color/white"
                                 android:textSize="32dp" />
 
                             <TextView
@@ -51,37 +75,16 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Abhay"
+                                android:textColor="@color/white"
                                 android:textSize="32dp" />
                         </LinearLayout>
-
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:id="@+id/Iv_CitizenMainActivity_Setting"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.2"
-                            android:src="@drawable/ic_baseline_settings_24" />
                     </LinearLayout>
-
-                    <TextView
-                        android:layout_marginLeft="4dp"
-                        android:paddingBottom="4dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
-                        android:text="Welcome to your Home's smart Application"
-                        android:textSize="16dp" />
-
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Rv_CitizenMainActivity"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_main_citizen" />
-
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </ScrollView>
 

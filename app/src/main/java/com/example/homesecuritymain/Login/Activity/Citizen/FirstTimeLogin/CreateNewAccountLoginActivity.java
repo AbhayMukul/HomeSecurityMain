@@ -3,6 +3,7 @@ package com.example.homesecuritymain.Login.Activity.Citizen.FirstTimeLogin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class CreateNewAccountLoginActivity extends AppCompatActivity {
 
         initialize();
 
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         btn.setOnClickListener(new View.OnClickListener() {
