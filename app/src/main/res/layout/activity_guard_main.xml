@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/background_round_corner_rectangle"
-                android:backgroundTint="@color/purple_200"
+                android:backgroundTint="@color/background_main_3"
                 android:padding="18dp"
                 android:src="@drawable/ic_baseline_settings_24" />
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/background_round_corner_rectangle"
-                android:backgroundTint="@color/background_4"
+                android:backgroundTint="@color/background_main_2"
                 android:padding="18dp"
                 android:src="@drawable/ic_baseline_person_add_alt_1_24" />
 

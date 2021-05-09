@@ -29,4 +29,7 @@ public class SharedPrefrencesClass {
     public static final String LocationDetails = "locationDetails";
     public static final String SP_UPDATETIME = "updatetime";
 
+    //OTP ACTIVITY TYPE
+    public static final String OTP_TYPE = "otpType";
+    public static final String SP_JSON = "json";
 }

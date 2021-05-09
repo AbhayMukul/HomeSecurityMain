@@ -4,7 +4,9 @@ package com.example.homesecuritymain.guard.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
+import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuestGuard;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelGuestList;
 import com.example.homesecuritymain.R;
@@ -29,7 +33,10 @@ public class GuestListVerificationActivity extends AppCompatActivity {
 
     private String flat,code;
 
-    ModelGuestList modelGuestList;
+    SharedPreferences sharedPreferences;
+    SharedPrefrencesClass sharedPrefrencesClass;
+
+    String id;
 
     //firebase Database
     DatabaseReference mUserDatabaseCitizen;
@@ -42,6 +49,9 @@ public class GuestListVerificationActivity extends AppCompatActivity {
 
         initialize();
 
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+        id = sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID,"");
+
         mUserDatabaseCitizen = FirebaseDatabase.getInstance().getReference("citizen");
         mUserDatabaseGuest = FirebaseDatabase.getInstance().getReference("guest");
 
@@ -50,55 +60,44 @@ public class GuestListVerificationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getData();
                 getDataFirebaseDatabase();
-//                startActivity(new Intent(GuestListVerificationActivity.this,GuardMainActivity.class));
             }
         });
     }
 
     private void getDataFirebaseDatabase() {
-        mUserDatabaseCitizen.child(flat).child("GuestList").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(code).exists()){
-                    uploadData();
-                }else{
-                    Toast.makeText(GuestListVerificationActivity.this, "please verify the code and/flat given", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void uploadData() {
         mUserDatabaseCitizen.child(flat).child("GuestList").child(code).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                modelGuestList = (ModelGuestList) snapshot.getValue(ModelGuestList.class);
+                ModelGuestList model = (ModelGuestList) snapshot.getValue(ModelGuestList.class);
+                if(model == null){
+                    Toast.makeText(GuestListVerificationActivity.this, "The code for the given flat doesnt exist", Toast.LENGTH_SHORT).show();
+                }else {
+                    DateAndTimeClass dateAndTimeClass = new DateAndTimeClass();
+                    String key = mUserDatabaseCitizen.push().getKey();
 
-                DateAndTimeClass dateAndTimeClass = new DateAndTimeClass();
-                String key = mUserDatabaseCitizen.push().getKey();
+                    String name = model.getName();
+                    String flat = model.getFlat();
+                    String number = model.getNumber();
+                    String work = model.getWork();
 
-                //Models
-                ModelActiveGuest modelActiveGuest = new ModelActiveGuest(modelGuestList.getName(),modelGuestList.getFlat(),modelGuestList.getNumber(),modelGuestList.getWork(),key,dateAndTimeClass.getCurrentTime(),false);
-                ModelAllGuest modelAllGuest = new ModelAllGuest(modelGuestList.getName(),modelGuestList.getFlat(),modelGuestList.getNumber(),modelGuestList.getWork(),key,dateAndTimeClass.getCurrentDate(),dateAndTimeClass.getCurrentTime(),"100","","","","","","","",false,true);
+                    //Models
+                    ModelActiveGuestGuard modelActiveGuestGuard = new ModelActiveGuestGuard(name,flat,number,work,key,dateAndTimeClass.getCurrentTime(),false,false);
+                    ModelAllGuest modelAllGuest = new ModelAllGuest(name,flat,number,work,key,dateAndTimeClass.getCurrentDate(),dateAndTimeClass.getCurrentTime(),id,"","","","","","","",false,true);
 
-                //set Citizen
-                mUserDatabaseCitizen.child(modelActiveGuest.getFlat()).child("GUEST").child("Active").child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuest);
-                mUserDatabaseCitizen.child(modelActiveGuest.getFlat()).child("GUEST").child("All").child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
+                    //set Citizen
+                    mUserDatabaseCitizen.child(flat).child("GUEST").child("Active").child(key).setValue(model);
+                    mUserDatabaseCitizen.child(flat).child("GUEST").child("All").child(key).setValue(modelAllGuest);
 
-                //set Guest
-                mUserDatabaseGuest.child("Active").child(modelActiveGuest.getKeyUID()).setValue(modelActiveGuest);
-                mUserDatabaseGuest.child("All").child(modelActiveGuest.getKeyUID()).setValue(modelAllGuest);
+                    //set Guest
+                    mUserDatabaseGuest.child("Active").child(key).setValue(modelActiveGuestGuard);
+                    mUserDatabaseGuest.child("All").child(key).setValue(modelAllGuest);
 
-                //remove from GuestList
-                mUserDatabaseCitizen.child(flat).child("GuestList").child(code).removeValue();
+                    //remove from GuestList
+                    mUserDatabaseCitizen.child(flat).child("GuestList").child(code).removeValue();
 
-                startActivity(new Intent(GuestListVerificationActivity.this,GuardMainActivity.class));
-                finish();
+                    startActivity(new Intent(GuestListVerificationActivity.this,GuardMainActivity.class));
+                    finish();
+                }
             }
 
             @Override

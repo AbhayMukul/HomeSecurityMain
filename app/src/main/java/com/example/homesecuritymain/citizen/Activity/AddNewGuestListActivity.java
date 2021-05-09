@@ -31,6 +31,8 @@ public class AddNewGuestListActivity extends AppCompatActivity {
 
     public Button btn;
 
+    ValueEventListener listener;
+
     //OTP
     PhoneAuthProvider.ForceResendingToken Token;
 
@@ -51,8 +53,9 @@ public class AddNewGuestListActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn.setEnabled(false);
                 //send OTP to number of guest
-                object.referenceGuestListCitizen(flat).child(edCode.getText().toString().trim()).child("code").addValueEventListener(new ValueEventListener() {
+                listener = object.referenceGuestListCitizen(flat).child(edCode.getText().toString().trim()).child("code").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String code = (String) snapshot.getValue();
@@ -60,6 +63,7 @@ public class AddNewGuestListActivity extends AppCompatActivity {
                         if(code == null){
                            requestOTP("+91" + edPhone.getText().toString().trim());
                         }else {
+                            btn.setEnabled(true);
                             Toast.makeText(AddNewGuestListActivity.this, "The code exists", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -95,6 +99,8 @@ public class AddNewGuestListActivity extends AppCompatActivity {
                 intent.putExtra("data",modelGuestList);
 
                 startActivity(new Intent(intent));
+
+                object.referenceGuestListCitizen(flat).child(edCode.getText().toString().trim()).child("code").removeEventListener(listener);
 
                 finish();
             }

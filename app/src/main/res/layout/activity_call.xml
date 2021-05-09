@@ -4,49 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     android:orientation="vertical"
-    android:gravity="center"
-    android:layout_margin="16dp"
     tools:context=".guard.Activity.CallActivity">
 
     <LinearLayout
+        android:background="@color/white"
+        android:elevation="16dp"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <Button
+
+        <TextView
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Call"
-            android:textColor="@color/white"
-            android:background="@color/background_5"
-            android:id="@+id/Btn_PhoneCitizen"/>
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:textColor="@color/background_main_4"
+            android:gravity="left"
+            android:text="CITIZEN CONFIRMATION" />
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/Ll_CallActivity"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/Btn_CallActivity_CitizenAllow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/background_7"
+                android:text="Allowed" />
+
+            <Button
+                android:id="@+id/Btn_CallActivity_CitizenNotAllow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/text_color_main_1"
+                android:text="Not Allowed" />
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="8dp"
+        android:id="@+id/Rv_CallActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Button
-            android:backgroundTint="@color/background_7"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Allowed"
-            android:id="@+id/Btn_CitizenAllow"/>
-        <Button
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Not Allowed"
-            android:id="@+id/Btn_CitizenNotAllow"/>
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 </LinearLayout>

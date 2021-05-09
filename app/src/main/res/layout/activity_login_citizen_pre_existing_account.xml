@@ -9,9 +9,9 @@
     tools:context=".Login.Activity.Citizen.PreviouslyLoggedIn.LoginCitizenPreExistingAccountActivity">
 
     <androidx.cardview.widget.CardView
-        android:backgroundTint="@color/background_main_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/background_main_1"
         app:cardElevation="8dp"
         app:strokeWidth="8dp">
 
@@ -39,26 +39,27 @@
             android:layout_alignParentTop="true" />
 
         <LinearLayout
-            android:layout_marginTop="32dp"
             android:id="@+id/Ll_LoginCitizenPreExistingAccountActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:orientation="vertical">
+
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                android:layout_width="wrap_content"
-                android:layout_height="160dp"
                 android:src="@drawable/ic_sorry" />
+
             <TextView
-                android:layout_marginTop="32dp"
-                android:textSize="24dp"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="It seems as if you are not yet a part of another flat yet"/>
-
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="It seems as if you are not yet a part of another flat yet"
+                android:textSize="24dp" />
         </LinearLayout>
     </LinearLayout>
 

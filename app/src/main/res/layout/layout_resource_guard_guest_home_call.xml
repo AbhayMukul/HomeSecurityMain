@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp"
+    android:background="@color/white"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.1"
+        android:padding="4dp"
+        android:src="@drawable/ic_baseline_call_24" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/Lr_Tv_CallActivity_CitizenNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9"
+        android:gravity="left"
+        android:text="ACTIVE GUEST"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
