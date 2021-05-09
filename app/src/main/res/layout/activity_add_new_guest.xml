@@ -4,26 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".guard.Activity.AddNewGuestActivity">
 
     <LinearLayout
+        android:elevation="8dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/background_round_corner_rectangle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="120dp"
+        android:padding="16dp"
         android:layout_marginRight="32dp"
         android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:textColor="@color/background_main_4"
+                    android:gravity="left"
+                    android:text="ENTRY DETAILS" />
 
                 <EditText
                     android:id="@+id/Ed_AddNewGuestActivity_Name"
@@ -59,10 +69,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:background="@color/teal_200"
+                    android:background="@color/background_main_4"
                     android:text="Send OTP" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/Tv_AddNewGuestActivity_GuestList"

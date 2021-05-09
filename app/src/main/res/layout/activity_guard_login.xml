@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_4"
     android:layout_height="match_parent"
     tools:context=".Login.Activity.Guard.GuardLoginActivity">
 
@@ -30,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="LOGIN DETAILS"
-                    android:textColor="@color/background_10"
+                    android:textColor="@color/background_main_4"
                     android:textSize="24dp"
                     android:textStyle="bold" />
 
@@ -103,7 +104,7 @@
                         android:id="@+id/Btn_GuardLoginActivity_Next"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/background_10"
+                        android:background="@color/background_main_4"
                         android:text="NEXT" />
                 </LinearLayout>
 

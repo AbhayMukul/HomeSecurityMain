@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.homesecuritymain.Admin.Model.GuardDetailsModel;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
+import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +39,6 @@ public class NewGuardActivity extends AppCompatActivity {
         object = new CommonClass();
 
         id = getIntent().getStringExtra("idGuard");
-        Toast.makeText(this, id + "::", Toast.LENGTH_SHORT).show();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +47,8 @@ public class NewGuardActivity extends AppCompatActivity {
                 btn.setEnabled(false);
 
                 if (password.equals(reEnteredPassword)){
+                    //set Date
+                    object.mUserDatabaseGuardLogin.child(id).child("dateJoined").setValue(new DateAndTimeClass().getCurrentDate());
                     //update password
                     object.mUserDatabaseGuardLogin.child(id).child("password").setValue(password).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

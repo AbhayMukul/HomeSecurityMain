@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_4"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".guard.Activity.GuardSettingActivity">
@@ -25,7 +26,7 @@
                 android:padding="16dp"
                 android:paddingTop="8dp"
                 android:text="GUARD DETAILS"
-                android:textColor="@color/guard_main_1"
+                android:textColor="@color/background_main_4"
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
@@ -252,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:layout_weight="0.64"
-                    android:background="@color/guard_main_2"
+                    android:background="@color/background_main_4"
                     android:text="UPDATE" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

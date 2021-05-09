@@ -31,6 +31,8 @@ public class NewGuardActivitySplashScreenActivity extends AppCompatActivity {
 
         initialize();
 
+        Toast.makeText(this, "id" + model.getID(), Toast.LENGTH_SHORT).show();
+
         tvName.setText("Hi, " + model.getName());
 
         setDataSharedPrefrence();
@@ -41,7 +43,7 @@ public class NewGuardActivitySplashScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(NewGuardActivitySplashScreenActivity.this, GuardMainActivity.class));
                 finish();
             }
-        },2500);
+        },5000);
     }
 
     private void setDataSharedPrefrence() {
@@ -49,11 +51,14 @@ public class NewGuardActivitySplashScreenActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(sharedPrefrencesClass.SP_ACCOUNTTYPE,"guard");
+        editor.putString(sharedPrefrencesClass.SP_PASSWORD,model.getPassword());
         editor.putString(sharedPrefrencesClass.SP_GUARDID,model.getID());
         editor.putBoolean(sharedPrefrencesClass.SP_LOGGEDIN,true);
         editor.putString(sharedPrefrencesClass.SP_NAME,model.getName());
         editor.putString(sharedPrefrencesClass.SP_PHONE,model.getPhone());
         editor.putString(sharedPrefrencesClass.SP_SHIFT,model.getShift());
+        editor.putString(sharedPrefrencesClass.SP_JOINDATE,model.getDateJoined());
+        editor.putString(sharedPrefrencesClass.SP_ADDRESS,model.getAddress());
 
         editor.commit();
     }

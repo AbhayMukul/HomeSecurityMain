@@ -31,7 +31,7 @@ public class GuardSettingActivity extends AppCompatActivity {
     GuardDetailsModel model;
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
-    private String name, address;
+    private String name, address,id,password;
     private TextView tvId, tvPassword, tvDateJoined, tvShift, tvPhone, tvMoreDetails, tvChangePassword;
     private EditText edName, edAddress;
     private Button btnExit, btnUpdate;
@@ -45,7 +45,10 @@ public class GuardSettingActivity extends AppCompatActivity {
 
         initialize();
 
-        model = (GuardDetailsModel) getIntent().getSerializableExtra("modelGuardAll");
+        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
+
+        id = sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID,"");
+        password = sharedPreferences.getString(sharedPrefrencesClass.SP_PASSWORD,"");
 
         linearLayout.setVisibility(View.GONE);
 
@@ -68,7 +71,7 @@ public class GuardSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (tvPassword.getText().equals("********")) {
-                    tvPassword.setText(model.getPassword());
+                    tvPassword.setText(password);
                 } else {
                     tvPassword.setText("********");
                 }
@@ -80,8 +83,8 @@ public class GuardSettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getText();
 
-                object.referenceGuardLoginAddress(model.getID()).setValue(address);
-                object.referenceGuardLoginName(model.getID()).setValue(name);
+                object.referenceGuardLoginAddress(id).setValue(address);
+                object.referenceGuardLoginName(id).setValue(name);
 
                 Toast.makeText(GuardSettingActivity.this, "updated", Toast.LENGTH_SHORT).show();
             }
@@ -93,12 +96,13 @@ public class GuardSettingActivity extends AppCompatActivity {
                 logout();
 
                 startActivity(new Intent(GuardSettingActivity.this, SplashScreen.class));
+
+                finish();
             }
         });
     }
 
     private void logout() {
-        sharedPreferences = getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(sharedPrefrencesClass.SP_ACCOUNTTYPE, "");
@@ -117,14 +121,14 @@ public class GuardSettingActivity extends AppCompatActivity {
     }
 
     private void setText() {
-        tvId.setText(model.getID());
-        tvDateJoined.setText(model.getDateJoined());
+        tvId.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_GUARDID,""));
+        tvDateJoined.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_JOINDATE,""));
         tvPassword.setText("********");
-        tvPhone.setText(model.getPhone());
-        tvShift.setText(model.getShift());
+        tvPhone.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_PHONE,""));
+        tvShift.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_SHIFT,""));
 
-        edName.setText(model.getName());
-        edAddress.setText(model.getAddress());
+        edName.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_NAME,""));
+        edAddress.setText(sharedPreferences.getString(sharedPrefrencesClass.SP_ADDRESS,""));
     }
 
     private void initialize() {

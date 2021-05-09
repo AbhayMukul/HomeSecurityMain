@@ -46,7 +46,7 @@ public class AddNewGuestActivity extends AppCompatActivity implements Serializab
             public void onClick(View v) {
                 getAndPutData();
 
-                Intent intent = new Intent(getBaseContext(), CallActivity.class);
+                Intent intent = new Intent(getBaseContext(), OTPActivity.class);
 
                 //create model
                 intent.putExtra("data",modelActiveGuest);
@@ -70,7 +70,6 @@ public class AddNewGuestActivity extends AppCompatActivity implements Serializab
         flat = edFlat.getText().toString().trim();
 
         modelActiveGuest = new ModelActiveGuest(name,flat,phone,work,mUserDatabaseCitizen.push().getKey(),new DateAndTimeClass().getCurrentTime(),false);
-
     }
 
     private void initialize() {
@@ -82,7 +81,5 @@ public class AddNewGuestActivity extends AppCompatActivity implements Serializab
         btnDone = findViewById(R.id.Btn_AddNewGuestActivity_Verify);
 
         tvGuestList = findViewById(R.id.Tv_AddNewGuestActivity_GuestList);
-
-//        data = new ArrayList<>();
     }
 }
