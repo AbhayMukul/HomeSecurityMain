@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_4"
     tools:context=".Admin.Activity.NoticeAdminActivity">
 
     <LinearLayout
@@ -22,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="NOTICES"
-                android:textColor="@color/background_5"
+                android:textColor="@color/background_main_1"
                 android:textSize="32dp" />
 
         </androidx.cardview.widget.CardView>

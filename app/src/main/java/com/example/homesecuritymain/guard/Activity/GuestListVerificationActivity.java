@@ -85,7 +85,7 @@ public class GuestListVerificationActivity extends AppCompatActivity {
                     ModelAllGuest modelAllGuest = new ModelAllGuest(name,flat,number,work,key,dateAndTimeClass.getCurrentDate(),dateAndTimeClass.getCurrentTime(),id,"","","","","","","",false,true);
 
                     //set Citizen
-                    mUserDatabaseCitizen.child(flat).child("GUEST").child("Active").child(key).setValue(model);
+                    mUserDatabaseCitizen.child(flat).child("GUEST").child("Active").child(key).setValue(modelActiveGuestGuard);
                     mUserDatabaseCitizen.child(flat).child("GUEST").child("All").child(key).setValue(modelAllGuest);
 
                     //set Guest

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.homesecuritymain.CommonClasses.ClassCommon.CommonClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelAllGuest;
 import com.example.homesecuritymain.R;
@@ -73,6 +74,17 @@ public class FragmentActiveGuest extends Fragment {
             protected void onBindViewHolder(@NonNull AdapterActiveGuard adapter, int i, @NonNull ModelActiveGuest model) {
                 adapter.tvName.setText(model.getName());
                 adapter.tvTimeIn.setText(model.getTimeIn());
+
+                adapter.btnExit.setEnabled(!model.getSTOP());
+
+                adapter.btnExit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(!model.getSTOP()){
+                            new CommonClass().referenceGuestGuardActive().child(model.getKeyUID()).removeValue();
+                        }
+                    }
+                });
             }
 
             @NonNull

@@ -1,7 +1,11 @@
 package com.example.homesecuritymain.citizen.Fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +29,9 @@ import com.example.homesecuritymain.CommonClasses.ClassCommon.DateAndTimeClass;
 import com.example.homesecuritymain.CommonClasses.ClassCommon.SharedPrefrencesClass;
 import com.example.homesecuritymain.CommonClasses.ModelCommon.ModelActiveGuest;
 import com.example.homesecuritymain.R;
+import com.example.homesecuritymain.citizen.Activity.GuestsActivity;
 import com.example.homesecuritymain.citizen.Adapters.AdapterGuestActiveCitizen;
+import com.example.homesecuritymain.guard.Activity.CallActivity;
 import com.example.homesecuritymain.guard.Adapters.AdapterActiveGuard;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -34,6 +42,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FragmentGuestActive extends Fragment {
+    private static final int REQUEST_CALL = 1;
     public RecyclerView recyclerView;
     public ImageView imageView;
     public TextView textView;
@@ -42,7 +51,7 @@ public class FragmentGuestActive extends Fragment {
 
     SharedPreferences sharedPreferences;
     SharedPrefrencesClass sharedPrefrencesClass;
-    String flat;
+    String flat, citizenID;
 
     //Firebase Database
     FirebaseRecyclerOptions<ModelActiveGuest> option;
@@ -50,7 +59,7 @@ public class FragmentGuestActive extends Fragment {
 
     CommonClass object;
 
-    public static FragmentGuestActive getInstance(){
+    public static FragmentGuestActive getInstance() {
         FragmentGuestActive fragmentGuestActive = new FragmentGuestActive();
         return fragmentGuestActive;
     }
@@ -72,7 +81,8 @@ public class FragmentGuestActive extends Fragment {
         linearLayout.setVisibility(View.GONE);
 
         sharedPreferences = getContext().getSharedPreferences(sharedPrefrencesClass.LoginDetails, Context.MODE_PRIVATE);
-        flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT,"");
+        flat = sharedPreferences.getString(sharedPrefrencesClass.SP_FLAT, "");
+        citizenID = sharedPreferences.getString(sharedPrefrencesClass.SP_PHONE, "");
 
         object = new CommonClass();
         object.referenceGuestCitizenActive(flat).addValueEventListener(new ValueEventListener() {
@@ -81,7 +91,7 @@ public class FragmentGuestActive extends Fragment {
                 Long aLong = snapshot.getChildrenCount();
                 Integer guests = aLong.intValue();
 
-                if(guests == 0){
+                if (guests == 0) {
                     recyclerView.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.VISIBLE);
                     imageView.setImageResource(R.drawable.ic_clipboard);
@@ -117,10 +127,24 @@ public class FragmentGuestActive extends Fragment {
                 adapter.tvName.setText(model.getName());
                 adapter.tvWork.setText(model.getWork());
 
+                adapter.btnExit.setEnabled(!model.getSTOP());
+
                 adapter.tvCall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //call Guest
+                        if (model.getNumber().trim().length() > 0) {
+                            if (ContextCompat.checkSelfPermission(getContext(),
+                                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+                            } else {
+                                String dial = "tel:" + model.getNumber();
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+                            }
+                        } else {
+                            Toast.makeText(getContext(), "Enter Phone Number", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -136,15 +160,15 @@ public class FragmentGuestActive extends Fragment {
                 adapter.btnExit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(!model.getSTOP()) {
+                        if (!model.getSTOP()) {
                             //set Value for time and date for exit
                             //Citizen
-                            object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("citizenOut").setValue("");
+                            object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("citizenOut").setValue(citizenID);
                             object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
                             object.referenceGuestCitizenAll(flat).child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
 
                             //Guard
-                            object.referenceGuestGuardAll().child(model.getKeyUID()).child("citizenOut").setValue("citizen name");
+                            object.referenceGuestGuardAll().child(model.getKeyUID()).child("citizenOut").setValue(citizenID);
                             object.referenceGuestGuardAll().child(model.getKeyUID()).child("dateOutCitizen").setValue(new DateAndTimeClass().getCurrentDate());
                             object.referenceGuestGuardAll().child(model.getKeyUID()).child("timeOutCitizen").setValue(new DateAndTimeClass().getCurrentTime());
 
@@ -152,8 +176,8 @@ public class FragmentGuestActive extends Fragment {
                             object.referenceGuestCitizenActive(flat).child(model.getKeyUID()).removeValue();
 
                             //allow guard exit from society
-                            object.referenceGuestGuardActive().child(model.getKeyUID()).child("allowedExit").setValue(true);
-                        }else {
+//                            object.referenceGuestGuardActive().child(model.getKeyUID()).child("allowedExit").setValue(true);
+                        } else {
                             Toast.makeText(getContext(), "the guest cannot exit due to being stopped", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -170,5 +194,16 @@ public class FragmentGuestActive extends Fragment {
 
         firebaseRecyclerAdapter.startListening();
         recyclerView.setAdapter(firebaseRecyclerAdapter);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Permission ACCEPTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

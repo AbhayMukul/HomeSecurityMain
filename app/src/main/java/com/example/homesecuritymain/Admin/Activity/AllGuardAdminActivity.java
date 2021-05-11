@@ -86,7 +86,7 @@ public class AllGuardAdminActivity extends AppCompatActivity {
                 adapter.tvActive.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        object.mUserDatabaseGuardLogin.child(model.getKeyUID()).child("active").setValue(!model.getACTIVE());
+                        object.mUserDatabaseGuardLogin.child(model.getID()).child("active").setValue(!model.getACTIVE());
                     }
                 });
             }

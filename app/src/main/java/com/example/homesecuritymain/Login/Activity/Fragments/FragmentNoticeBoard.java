@@ -44,7 +44,7 @@ public class FragmentNoticeBoard extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-//        imageView.setImageResource(R.drawable.screenshot_20210507_171619);
+        imageView.setImageResource(R.drawable.noticeboard);
         tvDescription.setText("All the important notices would be updated here");
         tvName.setText("NoticeBoard");
 
