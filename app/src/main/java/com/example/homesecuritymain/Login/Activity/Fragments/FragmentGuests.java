@@ -44,7 +44,7 @@ public class FragmentGuests extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-        imageView.setImageResource(R.drawable.guests);
+        imageView.setImageResource(R.drawable.guests_main);
         tvDescription.setText("Here you would be able to see all the Guest for your FLat account");
         tvName.setText("Guest");
 

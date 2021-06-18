@@ -44,7 +44,7 @@ public class FragmentGuestList extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-        imageView.setImageResource(R.drawable.guestlist);
+        imageView.setImageResource(R.drawable.guestlist_main);
         tvDescription.setText("You can create add your own Guests at the GuestList of your Flat");
         tvName.setText("GuestList");
 

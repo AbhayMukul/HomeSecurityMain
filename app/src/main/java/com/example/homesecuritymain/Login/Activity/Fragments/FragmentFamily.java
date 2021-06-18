@@ -45,7 +45,7 @@ public class FragmentFamily extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-        imageView.setImageResource(R.drawable.family);
+        imageView.setImageResource(R.drawable.family_main);
         tvDescription.setText("All your family members are found here with their locations seen by everyone in the family for better safety");
         tvName.setText("Family");
 

@@ -45,7 +45,7 @@ public class FragmentIntroduction extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-        imageView.setImageResource(R.drawable.dashboard);
+        imageView.setImageResource(R.drawable.main_dash);
         tvDescription.setText("This would be your DashBoard to access all the application features");
         tvName.setText("DashBoard");
 

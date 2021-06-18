@@ -47,7 +47,7 @@ public class FragmentGrievance extends Fragment {
         tvDescription.setAnimation(animation);
         tvName.setAnimation(animation);
 
-        imageView.setImageResource(R.drawable.grievance);
+        imageView.setImageResource(R.drawable.grievance_handling_main);
         tvDescription.setText("Any problem in your flat?" + "\n" + "post it here and our team would reach out to you for your assistance");
         tvName.setText("Grievance");
 
